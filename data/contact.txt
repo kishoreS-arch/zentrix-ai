@@ -1,0 +1,22 @@
+College Name: Sudharsan Engineering College
+
+Address:
+Sathiyamangalam,
+Pudukkottai District,
+Tamil Nadu, India
+
+Phone:
++91 4322 123456 (example number)
+
+Email:
+info@sudharsanec.edu.in (example email)
+
+Website:
+www.sec.ac.in
+
+Office Hours:
+Monday to Friday: 9:00 AM to 5:00 PM
+Saturday: 9:00 AM to 1:00 PM
+
+For Admissions:
+Students can contact the admission office directly through phone or email for queries related to courses, fees, and application process.

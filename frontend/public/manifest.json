@@ -1,0 +1,17 @@
+{
+  "name": "SEC AI Assistant",
+  "short_name": "SEC AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#2f81f7",
+  "description": "The official AI virtual assistant for Sudharsan Engineering College.",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

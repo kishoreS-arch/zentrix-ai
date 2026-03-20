@@ -1,0 +1,38 @@
+[
+    {
+        "user_id": "guest",
+        "question": "hii",
+        "response": "Hello. How can I assist you today? Are you looking for information about Sudharsan Engineering College?",
+        "timestamp": "2026-03-19T20:22:50.489862"
+    },
+    {
+        "user_id": "guest",
+        "question": "about placement",
+        "response": "Here is the information from our records:\n\n**From Placements**:\nThe college has a dedicated placement and training cell that works to improve students\u2019 employability skills.\nTraining programs start from the first year, including aptitude training, communication skills, and technical development.\nStudents are given opportunities to attend mock interviews, group discussions, and resume-building sessions.\n\n**From Faq**:\nQ: Where is Sudharsan Engineering College located?\nA: The college is located in Sathiyamangalam, Pudukkottai district, Tamil Nadu.\nQ: Which university is the college affiliated with?",
+        "timestamp": "2026-03-19T20:23:01.586125"
+    },
+    {
+        "user_id": "guest",
+        "question": "where is SEC",
+        "response": "Here is the information from our records:\n\n**From Events**:\nSudharsan Engineering College actively conducts various technical, cultural, and extracurricular events throughout the year.\nTechnical Symposiums:\nEach department organizes symposiums where students can participate in paper presentations, coding contests, project expos, and workshops.\n\n**From Faq**:\nQ: Where is Sudharsan Engineering College located?\nA: The college is located in Sathiyamangalam, Pudukkottai district, Tamil Nadu.\nQ: Which university is the college affiliated with?",
+        "timestamp": "2026-03-19T20:23:13.568037"
+    },
+    {
+        "user_id": "test_user_from_script",
+        "question": "Tell me about college timings",
+        "response": "The college is open from:\n- Monday to Friday: 9:00 AM to 5:00 PM\n- Saturday: 9:00 AM to 1:00 PM",
+        "timestamp": "2026-03-20T10:02:36.260412"
+    },
+    {
+        "user_id": "test_user",
+        "question": "Tell me about college timings",
+        "response": "College timings are as follows:\n- Monday to Friday: 9:00 AM to 5:00 PM\n- Saturday: 9:00 AM to 1:00 PM",
+        "timestamp": "2026-03-20T10:02:49.789942"
+    },
+    {
+        "user_id": "kishore@gmail.com",
+        "question": "What courses are offered?",
+        "response": "Here is the information from our records:\n\n**From Faq**:\nQ: What courses are offered in the college?\nA: The college offers undergraduate courses like CSE, IT, ECE, EEE, Mechanical, Civil, AI & DS, and AI & ML, along with postgraduate courses like MBA and M.E.\n\n**From Contact**:\nCollege Name: Sudharsan Engineering College\nAddress:\nSathiyamangalam,\nPudukkottai District,",
+        "timestamp": "2026-03-20T10:07:38.725997"
+    }
+]

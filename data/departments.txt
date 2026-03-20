@@ -1,0 +1,28 @@
+Sudharsan Engineering College offers a variety of undergraduate and postgraduate programs under different departments.
+
+Computer Science and Engineering:
+Focuses on programming, software development, artificial intelligence, and data science.
+
+Information Technology:
+Covers networking, databases, cybersecurity, and web technologies.
+
+Artificial Intelligence and Data Science:
+Specializes in machine learning, big data analytics, and AI-based solutions.
+
+Artificial Intelligence and Machine Learning:
+Focused on intelligent systems, deep learning, and automation.
+
+Electronics and Communication Engineering:
+Deals with communication systems, embedded systems, and electronics.
+
+Electrical and Electronics Engineering:
+Covers power systems, electrical machines, and control systems.
+
+Mechanical Engineering:
+Focuses on manufacturing, design, thermal engineering, and mechanics.
+
+Civil Engineering:
+Deals with construction, structural design, and environmental engineering.
+
+Postgraduate Programs:
+Includes Master of Engineering (CSE) and Master of Business Administration (MBA).

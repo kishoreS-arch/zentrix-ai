@@ -1,0 +1,29 @@
+Q: Where is Sudharsan Engineering College located?
+A: The college is located in Sathiyamangalam, Pudukkottai district, Tamil Nadu.
+
+Q: Which university is the college affiliated with?
+A: The college is affiliated with Anna University, Chennai.
+
+Q: Is the college approved by AICTE?
+A: Yes, the college is approved by AICTE.
+
+Q: What courses are offered in the college?
+A: The college offers undergraduate courses like CSE, IT, ECE, EEE, Mechanical, Civil, AI & DS, and AI & ML, along with postgraduate courses like MBA and M.E.
+
+Q: Does the college provide hostel facilities?
+A: Yes, separate hostel facilities are available for boys and girls.
+
+Q: How are the placements in the college?
+A: The college has a dedicated placement cell that provides training, internships, and campus recruitment opportunities.
+
+Q: Are internships provided for students?
+A: Yes, the college supports internships through industry collaborations and training programs.
+
+Q: Is transport facility available?
+A: Yes, transport facilities are available for students from nearby areas.
+
+Q: Does the college support extracurricular activities?
+A: Yes, students are encouraged to participate in technical events, sports, and cultural activities.
+
+Q: How can I apply for admission?
+A: Students can apply through counseling or by contacting the college admission office.

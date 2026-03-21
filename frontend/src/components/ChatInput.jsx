@@ -1,102 +1,151 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const ChatInput = ({ onSend, loading }) => {
-  const [text, setText] = useState('');
+const ChatInput = ({ onSend, loading, backendStatus }) => {
+  const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
+  const [attachedFile, setAttachedFile] = useState(null);
+  const fileInputRef = useRef(null);
+  const recognitionRef = useRef(null);
 
-  // Listen for quick question events from sidebar
+  // 🎤 Speech Recognition Setup
   useEffect(() => {
-    const handler = (e) => {
-      setText(e.detail);
-    };
-    window.addEventListener('quickQuestion', handler);
-    return () => window.removeEventListener('quickQuestion', handler);
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US';
+
+      recognitionRef.current.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setInput((prev) => (prev ? prev + ' ' + transcript : transcript));
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
   }, []);
 
-  // 🎙️ Voice Input
-  const startVoiceInput = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Voice recognition is not supported in this browser. Please use Chrome.");
-      return;
+  const toggleVoice = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+    } else {
+      setIsListening(true);
+      recognitionRef.current?.start();
     }
+  };
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    recognition.onstart = () => setIsListening(true);
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setText(transcript);
-    };
-    recognition.onend = () => setIsListening(false);
-    recognition.onerror = () => setIsListening(false);
-
-    recognition.start();
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAttachedFile(file);
+    }
+    e.target.value = null; // Clear input
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text.trim() && !loading) {
-      onSend(text.trim());
-      setText('');
-    }
-  };
-
-  // Handle Enter key
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      handleSubmit(e);
+    if ((input.trim() || attachedFile) && !loading && backendStatus === 'online') {
+      onSend(input, attachedFile);
+      setInput('');
+      setAttachedFile(null);
     }
   };
 
   return (
-    <section className="bg-sec-dark/70 backdrop-blur-md border-t border-sec-border p-4 md:p-6 flex items-center justify-center shrink-0">
-      <form onSubmit={handleSubmit} className="w-full max-w-4xl relative overflow-hidden rounded-2xl border border-sec-border bg-sec-panel shadow-2xl flex items-center p-1.5 md:p-2 group transition-all focus-within:ring-2 focus-within:ring-sec-accent focus-within:border-sec-accent">
+    <div className="max-w-3xl mx-auto px-4 pb-8 w-full animate-fade-in">
+      
+      {/* 📎 File Preview Bubble */}
+      {attachedFile && (
+        <div className="mb-3 flex items-center gap-3 p-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-fit animate-fade-in shadow-xl">
+          <div className="w-8 h-8 rounded-lg bg-[#10a37f]/10 flex items-center justify-center text-[#10a37f]">
+             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7"/></svg>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[11px] font-bold text-white truncate max-w-[150px]">{attachedFile.name}</span>
+            <span className="text-[9px] text-[#a0a0a0] uppercase tracking-wider">{(attachedFile.size / 1024).toFixed(1)} KB</span>
+          </div>
+          <button 
+            type="button"
+            onClick={() => setAttachedFile(null)}
+            className="p-1 hover:bg-[#2a2a2a] rounded-full text-[#a0a0a0] hover:text-white transition-all"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="flex items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-2 px-4 shadow-2xl focus-within:border-[#10a37f]/50 transition-all flex-nowrap relative">
+        <input 
+          type="file" 
+          ref={fileInputRef} 
+          className="hidden" 
+          onChange={handleFileChange}
+          accept=".txt,.pdf,.png,.jpg,.jpeg,.docx" 
+        />
         
-        {/* 🎙️ Microphone */}
+        {/* 🖇️ Attachment Button */}
         <button 
-           type="button" 
-           onClick={startVoiceInput}
-           className={`p-2.5 md:p-3 rounded-xl transition-all shrink-0 ${
-             isListening 
-               ? 'bg-red-500 text-white animate-pulse shadow-lg shadow-red-500/30' 
-               : 'hover:bg-slate-800 text-slate-400 hover:text-white'
-           }`}
-           title={isListening ? "Listening..." : "Voice Input"}
+          type="button" 
+          onClick={() => fileInputRef.current?.click()}
+          className="p-2 text-[#a0a0a0] hover:text-white transition-all shrink-0"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-          </svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
         </button>
 
-        <input 
-          type="text" 
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder={loading ? "AI is thinking..." : "Ask about SEC — courses, fees, placements, events..."}
-          className="flex-1 bg-transparent border-none outline-none text-slate-200 px-3 md:px-4 text-sm md:text-base font-medium placeholder:text-slate-600 disabled:opacity-50 min-w-0"
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           disabled={loading}
-          autoFocus
+          placeholder="Ask Zentrix..."
+          className="flex-1 bg-transparent border-none outline-none py-3 px-2 text-[15px] font-medium placeholder:text-[#a0a0a0] text-white min-w-0"
         />
 
-        {/* 🚀 Send */}
-        <button 
-           type="submit" 
-           disabled={loading || !text.trim()}
-           className="bg-sec-accent hover:bg-blue-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-bold tracking-wider uppercase transition-all flex items-center gap-2 text-sm shrink-0"
-        >
-          {loading ? (
-             <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-          ) : (
-            <>Send ⚡</>
-          )}
-        </button>
+        <div className="flex items-center gap-1 shrink-0">
+           {/* 🎤 Voice Button */}
+           <button 
+            type="button" 
+            onClick={toggleVoice}
+            className={`p-2 rounded-lg transition-all ${isListening ? 'text-red-500 bg-red-500/10 animate-pulse' : 'text-[#a0a0a0] hover:text-white'}`}
+            title={isListening ? "Listening..." : "Voice Input"}
+           >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
+           </button>
+
+           {/* 🚀 Send Button */}
+           <button 
+             type="submit" 
+             disabled={loading || (!input.trim() && !attachedFile)}
+             className={`p-2 rounded-lg transition-all ${
+               (!input.trim() && !attachedFile) || loading
+                 ? 'text-[#a0a0a0]/30 cursor-not-allowed'
+                 : 'text-[#10a37f] bg-[#10a37f]/10 hover:bg-[#10a37f]/20 active:scale-90'
+             }`}
+           >
+              {loading ? (
+                <div className="w-5 h-5 border-2 border-[#10a37f] border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              )}
+           </button>
+        </div>
       </form>
-    </section>
+      
+      {/* 🚀 Short Status Tag */}
+      <div className="flex justify-center mt-3">
+         <div className="flex items-center gap-2 bg-white/5 px-2 py-0.5 rounded-full border border-white/5 opacity-40">
+            <div className={`w-1 h-1 rounded-full ${backendStatus === 'online' ? 'bg-[#10a37f] shadow-[0_0_4px_#10a37f]' : 'bg-red-500'}`}></div>
+            <span className="text-[8px] font-black uppercase tracking-widest text-[#a0a0a0]">ZENTRIX_NODE_{backendStatus === 'online' ? 'STABLE' : 'FAIL'}</span>
+         </div>
+      </div>
+    </div>
   );
 };
 

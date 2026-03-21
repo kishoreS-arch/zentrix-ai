@@ -1,19 +1,19 @@
 @echo off
 echo ======================================================
-echo    🚀 STARTING THE SEC AI - PROFESSIONAL React EDITION
+echo    🚀 STARTING THE Zentrix - PROFESSIONAL React EDITION
 echo ======================================================
 echo.
 
 :: 1. Start Backend in a new window
 echo [STEP 1/2] Starting Python FastAPI Backend on Port 8000...
 cd backend
-start "SEC AI BACKEND" .\venv\Scripts\python.exe -m uvicorn main:app --reload --port 8000
+start "Zentrix BACKEND" .\venv\Scripts\python.exe -m uvicorn main:app --reload --port 8000
 echo.
 
 :: 2. Start Frontend Server in a new window
 echo [STEP 2/2] Starting Frontend React Environment...
 cd ../frontend
-start "SEC AI FRONTEND" npm run dev
+start "Zentrix FRONTEND" npm run dev
 
 echo.
 

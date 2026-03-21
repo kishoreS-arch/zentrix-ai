@@ -1,6 +1,6 @@
 {
-  "name": "SEC AI Assistant",
-  "short_name": "SEC AI",
+  "name": "Zentrix AI Assistant",
+  "short_name": "Zentrix",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0d1117",

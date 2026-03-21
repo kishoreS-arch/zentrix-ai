@@ -3,8 +3,10 @@ import glob
 
 # Get the folder where utils.py is located
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Data is at the root directory (outside backend/)
-DATA_DIR = os.path.join(os.path.dirname(BASE_DIR), "data")
+# Check for data/ inside backend/ first (for Render deployment), then fall back to ../data/
+_local_data = os.path.join(BASE_DIR, "data")
+_parent_data = os.path.join(os.path.dirname(BASE_DIR), "data")
+DATA_DIR = _local_data if os.path.exists(_local_data) else _parent_data
 
 def get_all_knowledge():
     """

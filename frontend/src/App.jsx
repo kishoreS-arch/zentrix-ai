@@ -7,6 +7,8 @@ import {
   googleProvider, 
   db, 
   signInWithPopup, 
+  signInWithRedirect,
+  getRedirectResult,
   signOut, 
   onAuthStateChanged,
   collection,
@@ -27,7 +29,22 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [backendStatus, setBackendStatus] = useState('checking');
   const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [loginError, setLoginError] = useState('');
+
+  // 🚨 Handle redirect result on mobile (when user returns from Google)
+  useEffect(() => {
+    getRedirectResult(auth).then(result => {
+      // User is handled by onAuthStateChanged below
+      // This just clears any lingering errors
+      if (result?.user) setLoginError('');
+    }).catch(err => {
+      if (err.code && err.code !== 'auth/redirect-cancelled-by-user') {
+        setLoginError("Sign in error: " + err.message);
+      }
+    });
+  }, []);
+
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [activePage, setActivePage] = useState(null);
 
@@ -78,42 +95,33 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // 🛡️ Auth Listener — always start fresh on login, load user's history into sidebar
+  // 🛡️ Auth Listener — single source of truth for user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // New login: load this user's sessions into sidebar but start with empty chat
+        // Load this user's sessions from localStorage
         const userSessions = loadSessionsForUser(currentUser.uid);
         setSessions(userSessions);
-        setMessages([]);          // ← Always fresh empty chat on login
-        setActiveSessionId(null); // ← No active session on login
+        setMessages([]);
+        setActiveSessionId(null);
 
-        // Save user details to Firestore
-        try {
-          const userRef = doc(db, 'users', currentUser.uid);
-          await setDoc(userRef, {
-            name: currentUser.displayName || 'User',
-            email: currentUser.email || '',
-            profileImage: currentUser.photoURL || '',
-            lastLogin: serverTimestamp(),
-          }, { merge: true });
-
-          // Also save to a login_history subcollection
-          await addDoc(collection(db, 'users', currentUser.uid, 'login_history'), {
-            timestamp: serverTimestamp(),
-            userAgent: navigator.userAgent
-          });
-        } catch (err) {
-          console.error('Failed to log user data to Firestore:', err);
-        }
+        // Save to Firestore in background — do NOT await before setting user
+        setDoc(doc(db, 'users', currentUser.uid), {
+          name: currentUser.displayName || 'User',
+          email: currentUser.email || '',
+          profileImage: currentUser.photoURL || '',
+          lastLogin: serverTimestamp(),
+        }, { merge: true }).catch(err => console.warn('Firestore write failed:', err));
 
       } else {
-        // Logout: clear everything from memory
+        // Logout: clear everything
         setSessions([]);
         setMessages([]);
         setActiveSessionId(null);
       }
+      // Always update user state and mark auth as resolved
       setUser(currentUser);
+      setAuthLoading(false);
     });
     return () => unsubscribe();
   }, [loadSessionsForUser]);
@@ -244,12 +252,35 @@ const App = () => {
   };
 
   const handleGoogleLogin = async () => {
+    setLoginError('');
     try {
-      await signInWithPopup(auth, googleProvider);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        await signInWithRedirect(auth, googleProvider);
+      } else {
+        await signInWithPopup(auth, googleProvider);
+      }
     } catch (err) {
-      setLoginError("Google sign-in failed. Try again.");
+      setLoginError("Google sign-in failed: " + err.message);
     }
   };
+
+  // ─── Auth Loading Screen ────────────────────────────────────────────────────
+  if (authLoading) {
+    return (
+      <div className="flex h-screen w-screen bg-[#0f0f0f] items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <img src="/zentrix-logo.png" alt="Zentrix" className="w-16 h-16 rounded-xl animate-pulse" />
+          <div className="flex gap-1.5">
+            <span className="w-2 h-2 bg-[#10a37f] rounded-full animate-bounce" style={{animationDelay:'0ms'}}></span>
+            <span className="w-2 h-2 bg-[#10a37f] rounded-full animate-bounce" style={{animationDelay:'150ms'}}></span>
+            <span className="w-2 h-2 bg-[#10a37f] rounded-full animate-bounce" style={{animationDelay:'300ms'}}></span>
+          </div>
+          <p className="text-[#a0a0a0] text-sm">Loading Zentrix...</p>
+        </div>
+      </div>
+    );
+  }
 
   // ─── Login Screen ──────────────────────────────────────────────────────────
   if (!user) {

@@ -1,8 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Allow users to manage their own profile
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Allow users to manage their own login history
+      match /login_history/{historyId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
     match /chats/{chatId} {
-      // Allow users to read and write only their own chats
       allow read, write: if request.auth != null && request.auth.uid == request.resource.data.user_id;
       allow read: if request.auth != null && request.auth.uid == resource.data.user_id;
     }

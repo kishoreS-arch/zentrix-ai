@@ -15,8 +15,17 @@ import base64
 load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
 
-# ✅ Groq Client
-client = Groq(api_key=api_key)
+# ✅ Groq API Key (loaded at startup)
+api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    print("WARNING: GROQ_API_KEY not set! Chat will not work.")
+
+def get_groq_client():
+    """Returns Groq client. Raises clear error if key is missing."""
+    key = os.getenv("GROQ_API_KEY")
+    if not key:
+        raise ValueError("GROQ_API_KEY environment variable is not set on the server.")
+    return Groq(api_key=key)
 
 app = FastAPI(title="SEC College AI Agent", version="2.0")
 
@@ -110,11 +119,13 @@ async def root():
 async def health_check():
     return {
         "status": "healthy",
-        "api_key_loaded": bool(api_key),
+        "api_key_loaded": bool(os.getenv("GROQ_API_KEY")),
         "knowledge_files_loaded": len(knowledge),
         "knowledge_topics": list(knowledge.keys()),
         "timestamp": datetime.datetime.now().isoformat()
     }
+
+print(f"✅ Backend started. Knowledge files loaded: {list(knowledge.keys())}")
 
 @app.get("/sources")
 async def get_sources():
@@ -145,6 +156,7 @@ class TitleRequest(BaseModel):
 async def generate_title(req: TitleRequest):
     """Uses Groq to produce a short, descriptive chat session title."""
     try:
+        client = get_groq_client()
         completion = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
@@ -300,6 +312,7 @@ CONTEXT:
         
         messages.append({"role": "user", "content": user_content})
 
+        client = get_groq_client()
         response = client.chat.completions.create(
             messages=messages,
             model="llama-3.2-11b-vision-preview" if is_image else "llama-3.3-70b-versatile",

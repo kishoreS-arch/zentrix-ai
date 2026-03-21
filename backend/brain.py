@@ -22,51 +22,45 @@ class KnowledgeEngine:
             print(f"⚠️ Error: Data directory {self.data_dir} not found.")
             return
 
-        all_text = []
         for filename in os.listdir(self.data_dir):
             if filename.endswith(".txt"):
                 with open(os.path.join(self.data_dir, filename), "r", encoding="utf-8") as f:
                     content = f.read().strip()
                     if content:
-                        # Chunking: split into paragraphs for better granularity
                         paragraphs = [p.strip() for p in content.split("\n\n") if p.strip()]
                         for p in paragraphs:
                             self.chunks.append(p)
-                            # Keep track of source filename for debugging or display if needed
-                            # for now just the text
         
         if not self.chunks:
-            print("⚠️ No data chunks found for indexing.")
             return
 
-        # Convert text to embeddings
         embeddings = encoder.encode(self.chunks)
+        # Normalize for cosine similarity
+        faiss.normalize_L2(embeddings)
         embeddings = np.array(embeddings).astype('float32')
 
-        # Create FAISS index
         dimension = embeddings.shape[1]
-        self.index = faiss.IndexFlatL2(dimension)
+        # Use Inner Product for normalized vectors = Cosine Similarity
+        self.index = faiss.IndexFlatIP(dimension)
         self.index.add(embeddings)
-        print(f"✅ Indexed {len(self.chunks)} knowledge chunks into FAISS.")
+        print(f"✅ Indexed {len(self.chunks)} knowledge chunks into FAISS with Cosine Similarity.")
 
     def search(self, query: str, top_k: int = 3, threshold: float = 0.75) -> str:
-        """Search FAISS index. Threshold logic as requested (score > 0.75)."""
+        """Search FAISS index using Cosine Similarity. Filters by threshold (0.75+) as requested."""
         if not self.index:
             return ""
 
-        query_embedding = encoder.encode([query]).astype('float32')
-        # L2 distance (lower is better, but since it's normalization-based, we treat it with care)
-        # However user mentioned "similarity score > 0.75".
-        # We find cosine similarity if we normalize, or simply use L2 distance.
-        # all-MiniLM-L6-v2 is usually cosine-compatible.
-        distances, indices = self.index.search(query_embedding, top_k)
+        query_embedding = encoder.encode([query])
+        faiss.normalize_L2(query_embedding)
+        query_embedding = query_embedding.astype('float32')
 
-        # L2 distance is not direct similarity. Converting L2 to a pseudo-score [0,1].
-        # Or let's use IndexFlatIP with normalized inputs for true cosine.
+        # distances here are cosine similarity scores [-1, 1]
+        similarities, indices = self.index.search(query_embedding, top_k)
+
         results = []
         for i, idx in enumerate(indices[0]):
-            if idx != -1:
-                # Basic heuristic check for relevance
+            score = similarities[0][i]
+            if idx != -1 and score >= threshold:
                 results.append(self.chunks[idx])
         
         return "\n\n".join(results)

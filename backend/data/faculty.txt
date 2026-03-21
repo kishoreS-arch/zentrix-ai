@@ -1,10 +1,23 @@
-Sudharsan Engineering College boasts a highly qualified and experienced faculty dedicated to student success.
+Sudharsan Engineering College (SEC) boasts a dedicated and experienced faculty team dedicated to student academic success, research, and mentoring.
 
-Key Faculty1. Leadership:
-- Principal: Dr. P. Sujatha, bringing extensive academic and administrative experience. Official contact for Principal Office is +91 98434 90901.
-- IMPORTANT RULE FOR FACULTY: Dr. P. Sujatha is the ONLY Principal. If a user asks about any other name (like Dr. S. John Joseph or others) and claims they are the Principal, you MUST correct them and say: "No, Dr. P. Sujatha is the current Principal of Sudharsan Engineering College."
-- Heads of Departments (HODs) hold Ph.D. degrees from prestigious institutions.
-- Many faculty members are active researchers with publications in international journals.
-- A strong student-to-faculty ratio ensures personalized attention and mentoring.
+=== OFFICIAL SEC FACULTY & LEADERSHIP DIRECTORY ===
 
-The faculty are not just teachers but also mentors who guide students in projects, research, and career planning.
+[ LEADERSHIP ]
+- Principal: Dr. M. Arulkumaran (Bringing over 30 years of academic and administrative experience).
+- Vice Principal: Dr. P. Sujatha (Vice Principal & HOD of Computer Science & Engineering).
+- Note: In some older profiles, Dr. K. Srinivasan was listed as Principal, but Dr. M. Arulkumaran is the current acting Principal.
+
+[ DEPARTMENT HEADS & PROFESSORS ]
+- Dr. P. Sujatha: Vice Principal, Associate Professor, and HOD of the Computer Science & Engineering (CSE) Department.
+- Dr. S. John Joseph: Associate Professor & HOD of the Artificial Intelligence and Data Science (AI & DS) Department (17 years of experience).
+- Dr. Asan Mohideen K.: Associate Professor & HOD of the Electronics & Communication Engineering (ECE) Department.
+
+[ FACULTY MEMBERS ]
+- Dr. A. Abbas Ali: Faculty Member.
+- Mrs. P. Parvathi: Associate Professor.
+- Mr. S. Sundarraj: Assistant Professor, Department of Civil Engineering.
+- Dr. Viswanath Bellie: Professor, Department of Mechanical Engineering.
+- Dr. Karthikeyan S.: Associate Professor, Department of Mechanical Engineering.
+- Ms. S. Hemila Haland: Assistant Professor, Department of Electrical and Electronics Engineering (EEE).
+
+IMPORTANT RULE FOR THE AI: If a user asks about any of these individuals, provide their exact roles as listed above. Do not mix up their titles, and do not refer to Dr. P. Sujatha or Dr. S. John Joseph as the Principal. The Principal is only Dr. M. Arulkumaran.

@@ -254,15 +254,23 @@ const App = () => {
   const handleGoogleLogin = async () => {
     setLoginError('');
     try {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (isMobile) {
-        await signInWithRedirect(auth, googleProvider);
-      } else {
-        await signInWithPopup(auth, googleProvider);
-      }
+      await signInWithPopup(auth, googleProvider);
     } catch (err) {
       setLoginError("Google sign-in failed: " + err.message);
     }
+  };
+
+  const handleGuestLogin = () => {
+    const guestUser = {
+      uid: 'guest_' + Date.now(),
+      displayName: 'Guest User',
+      email: 'guest@student.sec.edu',
+      photoURL: 'https://ui-avatars.com/api/?name=Guest+User&background=10a37f&color=fff'
+    };
+    setUser(guestUser);
+    setSessions([]);
+    setMessages([]);
+    setActiveSessionId(null);
   };
 
   // ─── Auth Loading Screen ────────────────────────────────────────────────────
@@ -297,18 +305,31 @@ const App = () => {
           </div>
 
           {loginError && (
-            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs mb-6">
+            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs mb-6 break-words">
               {loginError}
+              <p className="mt-2 font-bold text-white">APK Users: If login loops, please use Guest Login below.</p>
             </div>
           )}
           
-          <button 
-            onClick={handleGoogleLogin}
-            className="w-full bg-white text-black font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:opacity-90 transition-all active:scale-95 shadow-2xl"
-          >
-            <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" className="w-5" alt="Google" />
-            <span>Continue with Google</span>
-          </button>
+          <div className="space-y-3">
+            <button 
+              onClick={handleGoogleLogin}
+              className="w-full bg-white text-black font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:opacity-90 transition-all active:scale-95 shadow-[0_4px_14px_0_rgba(255,255,255,0.39)]"
+            >
+              <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" className="w-5" alt="Google" />
+              <span>Continue with Google</span>
+            </button>
+            
+            <button 
+              onClick={handleGuestLogin}
+              className="w-full bg-[#2a2a2a] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-[#3a3a3a] transition-all active:scale-95 border border-[#3a3a3a]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#10a37f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>Continue as Guest</span>
+            </button>
+          </div>
         </div>
       </div>
     );

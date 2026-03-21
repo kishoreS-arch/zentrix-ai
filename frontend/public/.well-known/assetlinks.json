@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.zentrix.ai",
+        "sha256_cert_fingerprints": ["9A:45:E1:17:89:5A:F5:DF:5C:87:02:97:78:C1:2A:C3:C8:28:C2:5D:B1:B9:BB:F8:1C:62:C2:43:B2:73:E0:85"]
+      }
+    }]

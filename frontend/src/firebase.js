@@ -6,7 +6,7 @@ import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, serve
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCiNzWxA6vrpihA8d8HfBzVAgs1wYwMtLU",
-  authDomain: "sec-ai-agent.firebaseapp.com",
+  authDomain: "sec-ai-agent.web.app",
   projectId: "sec-ai-agent",
   storageBucket: "sec-ai-agent.firebasestorage.app",
   messagingSenderId: "949223259529",

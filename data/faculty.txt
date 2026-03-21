@@ -1,23 +1,223 @@
-Sudharsan Engineering College (SEC) boasts a dedicated and experienced faculty team dedicated to student academic success, research, and mentoring.
+SUDHARSAN ENGINEERING COLLEGE (SEC) — COMPLETE FACULTY & STAFF DIRECTORY
+Source: https://sec.ac.in
+Last Updated: March 2026
 
-=== OFFICIAL SEC FACULTY & LEADERSHIP DIRECTORY ===
+==============================================================================
+SECTION 1: COLLEGE LEADERSHIP
+==============================================================================
 
-[ LEADERSHIP ]
-- Principal: Dr. M. Arulkumaran (Bringing over 30 years of academic and administrative experience).
-- Vice Principal: Dr. P. Sujatha (Vice Principal & HOD of Computer Science & Engineering).
-- Note: In some older profiles, Dr. K. Srinivasan was listed as Principal, but Dr. M. Arulkumaran is the current acting Principal.
+PRINCIPAL:
+- Dr. M. Arulkumaran — Principal, Sudharsan Engineering College
+  (Over 30 years of academic and administrative experience)
 
-[ DEPARTMENT HEADS & PROFESSORS ]
-- Dr. P. Sujatha: Vice Principal, Associate Professor, and HOD of the Computer Science & Engineering (CSE) Department.
-- Dr. S. John Joseph: Associate Professor & HOD of the Artificial Intelligence and Data Science (AI & DS) Department (17 years of experience).
-- Dr. Asan Mohideen K.: Associate Professor & HOD of the Electronics & Communication Engineering (ECE) Department.
+VICE PRINCIPAL:
+- Dr. P. Sujatha — Vice Principal & Head of Department, Computer Science & Engineering
+  Qualification: B.E., M.E., Ph.D.
 
-[ FACULTY MEMBERS ]
-- Dr. A. Abbas Ali: Faculty Member.
-- Mrs. P. Parvathi: Associate Professor.
-- Mr. S. Sundarraj: Assistant Professor, Department of Civil Engineering.
-- Dr. Viswanath Bellie: Professor, Department of Mechanical Engineering.
-- Dr. Karthikeyan S.: Associate Professor, Department of Mechanical Engineering.
-- Ms. S. Hemila Haland: Assistant Professor, Department of Electrical and Electronics Engineering (EEE).
+ADMINISTRATIVE OFFICER:
+- Mr. S. Moorthy — Administrative Officer
 
-IMPORTANT RULE FOR THE AI: If a user asks about any of these individuals, provide their exact roles as listed above. Do not mix up their titles, and do not refer to Dr. P. Sujatha or Dr. S. John Joseph as the Principal. The Principal is only Dr. M. Arulkumaran.
+==============================================================================
+SECTION 2: MANAGEMENT & GOVERNING BODY (SUDHARSAN EDUCATIONAL TRUST)
+==============================================================================
+
+- Shri. V.K. Sundaram — Chairman Emeritus, Sudharsan Educational Trust
+- Shri. K. Vijay Kumar — Chairman, Sudharsan Educational Trust
+- Shri. K. Ajay Kumar — Vice Chairman, Sudharsan Educational Trust
+- Dr. R. Sakthi Krishnan — CEO, Sudharsan Educational Trust
+- Mr. K. Pradeep Kumar — Secretary, Sudharsan Engineering College
+- Mr. Harish Balasundaram — Director, Sudharsan Engineering College
+- Dr. N.R. Shetty — Advisor & Governing Board Member
+
+==============================================================================
+SECTION 3: DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING (CSE)
+==============================================================================
+
+HEAD OF DEPARTMENT:
+- Dr. P. Sujatha — Professor & Head of Department, CSE
+  Qualification: B.E., M.E., Ph.D.
+  (Also serves as Vice Principal of the College)
+
+ASSOCIATE PROFESSOR:
+- Mrs. Parvathi.P — Associate Professor
+  Qualification: M.Sc CS & IT, M.Tech
+
+ASSISTANT PROFESSORS:
+- Ms. Panchavarnam.N — Assistant Professor, Qualification: B.E., M.E.
+- Ms. Malairani.K — Assistant Professor, Qualification: B.E., M.E.
+- Ms. Priya Dharshini.G — Assistant Professor, Qualification: B.E., M.E.
+- Ms. Durga Devi.G — Assistant Professor, Qualification: B.E., M.E.
+- Mr. Ayyapakumaran.R — Assistant Professor, Qualification: B.E., M.E.
+- Mr. Elambaridhi.S — Assistant Professor, Qualification: B.E., M.E.
+
+CSE DEPARTMENT INFO:
+- Vision: To generate competent professionals to become part of the industry and research organizations at national and international levels.
+- Mission: Providing a strong theoretical and practical background across the computer science discipline with an emphasis on software development. Empowering youth in rural communities with computer education.
+- CSE Library: 340 volumes, 85 UG project reports, 54 PG project reports, 3 national journals, 4 international journals, 11 CDs/DVDs.
+- Lab: CS LAB-02 with 35 systems (HP RCT0 280 PRO G6 MT, Core i5/10100, 8GB RAM, 128GB SSD)
+- Lab: IT LAB-02 with 35 systems (same configuration)
+
+==============================================================================
+SECTION 4: DEPARTMENT OF ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)
+==============================================================================
+
+HEAD OF DEPARTMENT:
+- Dr. John Joseph.S — Assistant Professor & Head of Department, AI & DS
+  Qualification: B.Tech IT, M.E., Ph.D.
+  (17 years of academic experience)
+
+ASSISTANT PROFESSORS:
+- Mrs. Porkodi.T — Assistant Professor, Qualification: B.E., M.E., (Ph.D pursuing)
+- Mrs. Selvakumari.N — Assistant Professor, Qualification: B.E., M.E., (Ph.D pursuing)
+- Ms. Hemalatha.N — Assistant Professor, Qualification: B.E., M.E.
+- Mr. Jai Ganesh.S — Assistant Professor, Qualification: B.E., M.E.
+
+==============================================================================
+SECTION 5: DEPARTMENT OF CSE (ARTIFICIAL INTELLIGENCE & MACHINE LEARNING)
+==============================================================================
+
+(The AI & ML department faculty members are listed under AI & DS above. The department shares resources under CSE branch with ML specialization.)
+
+==============================================================================
+SECTION 6: DEPARTMENT OF ELECTRONICS & COMMUNICATION ENGINEERING (ECE)
+==============================================================================
+
+HEAD OF DEPARTMENT:
+- Dr. Radhika.S — Professor & Head of Department, ECE
+  Qualification: B.E., M.E., Ph.D.
+
+ASSOCIATE PROFESSOR:
+- Mr. Sarathbabu.R — Associate Professor, Qualification: B.E., M.E., (Ph.D pursuing)
+
+ASSISTANT PROFESSORS:
+- Mr. Ramesh.D — Assistant Professor, Qualification: B.E., M.E., (Ph.D pursuing)
+- Ms. Revathi.M — Assistant Professor
+- Mrs. Devi.V — Assistant Professor
+- Mrs. Jenifer Nirosha.A — Assistant Professor
+- Ms. Jamuna Rani.P — Assistant Professor
+- Mrs. Priya.U — Assistant Professor
+- Mrs. Keerthana Lakshmi.M — Assistant Professor
+
+==============================================================================
+SECTION 7: DEPARTMENT OF CIVIL ENGINEERING
+==============================================================================
+
+HEAD OF DEPARTMENT:
+- Mr. Sundarraj.S — Assistant Professor & Head of Department, Civil Engineering
+  Qualification: B.E., M.E. (Structural Engineering)
+
+ASSISTANT PROFESSORS:
+- Mr. Siva.P — Assistant Professor
+- Mr. Manoharan.R — Assistant Professor
+- Ms. Rathis.A — Assistant Professor
+- Ms. Arthini.M — Assistant Professor
+- Ms. Gayathri Devi.R — Assistant Professor
+- Ms. Bhuvaneshwari.K — Assistant Professor
+- Mr. Piriya Dharsan.R — Assistant Professor
+- Mr. Rajasekaran.K — Assistant Professor
+
+==============================================================================
+SECTION 8: DEPARTMENT OF MECHANICAL ENGINEERING
+==============================================================================
+
+HEAD OF DEPARTMENT:
+- Mr. Arunprasad.M — Assistant Professor & Head of Department, Mechanical Engineering
+  Qualification: B.E. (Production), M.E. (Manufacturing), Ph.D (pursuing)
+
+ASSOCIATE PROFESSOR:
+- Mr. Thirumavalavan.R — Associate Professor
+  Qualification: B.E., M.E. (Production), Ph.D (pursuing)
+
+ASSISTANT PROFESSORS:
+- Mr. Vinoth Raj.D — Assistant Professor
+- Mr. Umaseelan.P — Assistant Professor
+- Mr. Manivannan.P — Assistant Professor
+- Mr. Gunasekar.D — Assistant Professor
+- Mr. Keerthivasan.P — Assistant Professor
+
+==============================================================================
+SECTION 9: DEPARTMENT OF ELECTRICAL & ELECTRONICS ENGINEERING (EEE)
+==============================================================================
+
+HEAD OF DEPARTMENT:
+- Mr. Jeevanantham.R — Assistant Professor & Head of Department, EEE
+  Qualification: B.E., M.E., Ph.D (pursuing)
+
+ASSISTANT PROFESSORS:
+- Ms. Hemila Haland.S — Assistant Professor
+- Mrs. Amal Philomiya.L — Assistant Professor
+- Mrs. Nagalakshmi.R — Assistant Professor
+- Mr. Sridhar.V — Assistant Professor
+- Mrs. Lakshmi Lauvanya.K — Assistant Professor
+- Ms. Indhumathi.G — Assistant Professor
+
+==============================================================================
+SECTION 10: DEPARTMENT OF SCIENCE & HUMANITIES
+==============================================================================
+
+CHEMISTRY:
+- Dr. Abbas Ali.A — Professor (Chemistry)
+- Mr. Narayanan.G — Associate Professor (Chemistry)
+- Mr. Marimuthu.T — Assistant Professor (Chemistry)
+
+PHYSICS:
+- Dr. Chandran.P — Professor (Physics)
+- Mr. Vijay Anand.K — Assistant Professor (Physics)
+- Mr. Balasubramaniyan.G — Assistant Professor (Physics)
+
+ENGLISH:
+- Ms. Rexcy.A — Assistant Professor (English)
+- Mr. Nitheesh Krishnan.B — Assistant Professor (English)
+- Mr. Surendhar.P — Assistant Professor (English)
+- Mrs. Priya.C — Assistant Professor (English)
+
+==============================================================================
+SECTION 11: DEPARTMENT OF MBA (MASTER OF BUSINESS ADMINISTRATION)
+==============================================================================
+
+- Dr. A. Saranya Devi — Professor, MBA Department
+- Dr. S. Amudha — Associate Professor, MBA Department
+- Mrs. A. Judith Matharasi Angeline — Assistant Professor, MBA Department
+
+MBA SPECIALIZATIONS:
+- Finance Management
+- Human Resource Management
+- Marketing Management
+- System Management
+
+==============================================================================
+SECTION 12: DEPARTMENT OF M.E. COMPUTER SCIENCE & ENGINEERING (PG)
+==============================================================================
+
+- Mr. M. Sivaraman — Assistant Professor, M.E. CSE Department
+
+==============================================================================
+SECTION 13: INFORMATION TECHNOLOGY (IT) & CYBER SECURITY DEPARTMENTS
+==============================================================================
+
+The B.Tech Information Technology and B.E. CSE (Cyber Security) programs are offered under the CSE umbrella. Faculty for these departments are shared with the CSE and AI & DS departments.
+
+==============================================================================
+QUICK REFERENCE — HEADS OF ALL DEPARTMENTS
+==============================================================================
+
+| Department                              | HOD Name           | Designation              |
+|-----------------------------------------|--------------------|--------------------------|
+| Computer Science & Engineering (CSE)    | Dr. P. Sujatha     | Professor & HoD (Also Vice Principal) |
+| AI & Data Science (AI & DS)             | Dr. John Joseph.S  | Assistant Professor & HoD |
+| Electronics & Communication Engg (ECE) | Dr. Radhika.S      | Professor & HoD          |
+| Civil Engineering                       | Mr. Sundarraj.S    | Assistant Professor & HoD |
+| Mechanical Engineering                  | Mr. Arunprasad.M   | Assistant Professor & HoD |
+| Electrical & Electronics Engg (EEE)    | Mr. Jeevanantham.R | Assistant Professor & HoD |
+| Science & Humanities                    | (Multiple subject HoDs) |                       |
+| MBA                                     | Dr. A. Saranya Devi | Professor               |
+
+==============================================================================
+IMPORTANT AI RULES FOR FACULTY QUERIES
+==============================================================================
+
+1. The PRINCIPAL of SEC is Dr. M. Arulkumaran. Never confuse any other staff as Principal.
+2. Dr. P. Sujatha is the VICE PRINCIPAL and also HOD of CSE — she is NOT the Principal.
+3. Dr. John Joseph.S (AI & DS HoD) is NOT the vice principal.
+4. If a user asks "who is the HOD of [department]", refer to Section 12 Quick Reference above.
+5. For staff contact details, direct users to: Phone: +91 98434 90901 | Email: info@sudharsanec.edu.in | Website: https://sec.ac.in

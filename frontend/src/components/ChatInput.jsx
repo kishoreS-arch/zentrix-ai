@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const ChatInput = ({ onSend, loading, backendStatus }) => {
+const ChatInput = ({ onSend, loading, backendStatus, onStop }) => {
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [attachedFile, setAttachedFile] = useState(null);
@@ -64,7 +64,7 @@ const ChatInput = ({ onSend, loading, backendStatus }) => {
       {/* 📎 File Preview Bubble */}
       {attachedFile && (
         <div className="mb-3 flex items-center gap-3 p-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-fit animate-fade-in shadow-xl">
-          <div className="w-8 h-8 rounded-lg bg-[#10a37f]/10 flex items-center justify-center text-[#10a37f]">
+          <div className="w-8 h-8 rounded-lg bg-[#00e5ff]/10 flex items-center justify-center text-[#00e5ff]">
              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7"/></svg>
           </div>
           <div className="flex flex-col">
@@ -81,7 +81,7 @@ const ChatInput = ({ onSend, loading, backendStatus }) => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="flex items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-2 px-4 shadow-2xl focus-within:border-[#10a37f]/50 transition-all flex-nowrap relative">
+      <form onSubmit={handleSubmit} className="flex items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-2 px-4 shadow-2xl focus-within:border-[#00e5ff]/50 transition-all flex-nowrap relative">
         <input 
           type="file" 
           ref={fileInputRef} 
@@ -119,20 +119,23 @@ const ChatInput = ({ onSend, loading, backendStatus }) => {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
            </button>
 
-           {/* 🚀 Send Button */}
+           {/* 🚀 Send / Stop Button */}
            <button 
-             type="submit" 
-             disabled={loading || (!input.trim() && !attachedFile)}
-             className={`p-2 rounded-lg transition-all ${
-               (!input.trim() && !attachedFile) || loading
+             type="button" 
+             onClick={loading ? onStop : handleSubmit}
+             disabled={(!input.trim() && !attachedFile) && !loading}
+             className={`p-2 rounded-lg transition-all flex items-center justify-center w-10 h-10 ${
+               (!input.trim() && !attachedFile) && !loading
                  ? 'text-[#a0a0a0]/30 cursor-not-allowed'
-                 : 'text-[#10a37f] bg-[#10a37f]/10 hover:bg-[#10a37f]/20 active:scale-90'
+                 : loading
+                 ? 'text-white bg-[#2a2a2a] hover:bg-[#3a3a3a] border border-[#3a3a3a]'
+                 : 'text-[#00e5ff] bg-[#00e5ff]/10 hover:bg-[#00e5ff]/20 active:scale-90'
              }`}
            >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-[#10a37f] border-t-transparent rounded-full animate-spin"></div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
               ) : (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
               )}
            </button>
         </div>
@@ -141,7 +144,7 @@ const ChatInput = ({ onSend, loading, backendStatus }) => {
       {/* 🚀 Short Status Tag */}
       <div className="flex justify-center mt-3">
          <div className="flex items-center gap-2 bg-white/5 px-2 py-0.5 rounded-full border border-white/5 opacity-40">
-            <div className={`w-1 h-1 rounded-full ${backendStatus === 'online' ? 'bg-[#10a37f] shadow-[0_0_4px_#10a37f]' : 'bg-red-500'}`}></div>
+            <div className={`w-1 h-1 rounded-full ${backendStatus === 'online' ? 'bg-[#00e5ff] shadow-[0_0_4px_#00e5ff]' : 'bg-red-500'}`}></div>
             <span className="text-[8px] font-black uppercase tracking-widest text-[#a0a0a0]">ZENTRIX_NODE_{backendStatus === 'online' ? 'STABLE' : 'FAIL'}</span>
          </div>
       </div>

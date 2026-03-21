@@ -1,17 +1,40 @@
 {
-  "name": "Zentrix AI Assistant",
+  "name": "Zentrix AI - SEC Assistant",
   "short_name": "Zentrix",
+  "description": "The official AI virtual assistant for Sudharsan Engineering College (SEC).",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d1117",
-  "theme_color": "#2f81f7",
-  "description": "The official AI virtual assistant for Sudharsan Engineering College.",
+  "orientation": "portrait-primary",
+  "background_color": "#0f0f0f",
+  "theme_color": "#00e5ff",
+  "lang": "en",
+  "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "/zentrix-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/zentrix-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
 }

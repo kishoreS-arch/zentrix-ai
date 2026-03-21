@@ -1,12 +1,26 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInAnonymously, 
+  signInWithPopup, 
+  signInWithRedirect, 
+  getRedirectResult, 
+  signOut, 
+  onAuthStateChanged, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  updateProfile,
+  browserLocalPersistence,
+  setPersistence
+} from "firebase/auth";
 import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, serverTimestamp, doc, setDoc } from "firebase/firestore";
 
-// TODO: Replace the following with your app's Firebase project configuration
+// Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCiNzWxA6vrpihA8d8HfBzVAgs1wYwMtLU",
-  authDomain: "sec-ai-agent.web.app",
+  authDomain: "sec-ai-agent.firebaseapp.com",
   projectId: "sec-ai-agent",
   storageBucket: "sec-ai-agent.firebasestorage.app",
   messagingSenderId: "949223259529",
@@ -16,21 +30,30 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+// 🔐 Set persistence to LOCAL so users stay logged in on mobile
+setPersistence(auth, browserLocalPersistence).catch(console.error);
+
 const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' }); // 🔐 Force account picker
+googleProvider.setCustomParameters({ prompt: 'select_account' }); // Force account picker
+googleProvider.addScope('email');
+googleProvider.addScope('profile');
+
 const db = getFirestore(app);
 
 export { 
   auth, 
   googleProvider, 
   db, 
+  signInAnonymously,
   signInWithPopup, 
   signInWithRedirect,
   getRedirectResult,
   signOut, 
   onAuthStateChanged,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
   collection,
   addDoc,
   query,

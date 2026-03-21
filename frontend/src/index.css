@@ -4,7 +4,7 @@
 @theme {
   --color-sec-dark: #0f0f0f;
   --color-sec-panel: #1a1a1a;
-  --color-sec-accent: #10a37f;
+  --color-sec-accent: #00e5ff;
   --color-sec-border: #2a2a2a;
   --color-sec-text: #ffffff;
   --color-sec-text-muted: #a0a0a0;
@@ -19,21 +19,41 @@
   }
 }
 
-/* 🌑 RESET & ABSOLUTE DARK MODE 🌑 */
+/* 🌑 RESET & ABSOLUTE DARK MODE — Mobile-safe */
 html, body, #root {
   background-color: #0f0f0f !important;
   color: #ffffff !important;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  /* Use 100dvh for mobile — handles virtual keyboard correctly */
+  height: 100dvh;
   width: 100vw;
   overflow: hidden;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Support safe areas on notched phones (iPhone X+, newer Android) */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  /* Prevent overscroll bounce effect on iOS */
+  overscroll-behavior: none;
 }
 
+/* Fix for 100dvh fallback on older browsers */
+@supports not (height: 100dvh) {
+  html, body, #root {
+    height: 100vh;
+  }
+}
+
+/* Prevent text size adjustment on mobile rotation */
 * {
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
   border-color: #2a2a2a;
+  box-sizing: border-box;
 }
 
 /* 🎨 SIDEBAR STYLES */
@@ -75,7 +95,7 @@ html, body, #root {
   @apply flex items-center rounded-2xl p-2 px-4 shadow-2xl focus-within:border-sec-accent/50 transition-all;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — hidden on mobile where it's not needed */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
@@ -93,4 +113,17 @@ html, body, #root {
 
 .slide-up-animation {
   animation: slideUpFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Mobile input focus — prevent zoom on iOS (input must be >= 16px) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  font-size: 16px !important;
+}
+
+/* Tap highlight removal for mobile buttons */
+button, a {
+  -webkit-tap-highlight-color: transparent;
 }

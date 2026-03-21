@@ -7,10 +7,14 @@ import {
   googleProvider, 
   db, 
   signInWithPopup, 
+  signInAnonymously,
   signInWithRedirect,
   getRedirectResult,
   signOut, 
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
   collection,
   addDoc,
   query,
@@ -22,6 +26,15 @@ import {
   setDoc
 } from './firebase';
 
+// Detect if running on a mobile/PWA/APK environment
+const isMobileOrPWA = () => {
+  const ua = navigator.userAgent || '';
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                       window.navigator.standalone === true;
+  return isMobile || isStandalone;
+};
+
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"; 
 
 const App = () => {
@@ -31,18 +44,34 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [loginError, setLoginError] = useState('');
+  
+  // Custom Auth States
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
 
-  // 🚨 Handle redirect result on mobile (when user returns from Google)
+  // Stop Generation Controller
+  const [abortController, setAbortController] = useState(null);
+
+  // 🚨 Handle redirect result — MUST run before auth state listener resolves
+  // This catches the case where user comes back from Google OAuth redirect
   useEffect(() => {
-    getRedirectResult(auth).then(result => {
-      // User is handled by onAuthStateChanged below
-      // This just clears any lingering errors
-      if (result?.user) setLoginError('');
-    }).catch(err => {
-      if (err.code && err.code !== 'auth/redirect-cancelled-by-user') {
-        setLoginError("Sign in error: " + err.message);
-      }
-    });
+    getRedirectResult(auth)
+      .then(result => {
+        if (result?.user) {
+          setLoginError('');
+          // onAuthStateChanged will handle setting the user
+        }
+      })
+      .catch(err => {
+        // Ignore cancelled redirects — common when user cancels Google sign-in
+        if (err.code && err.code !== 'auth/redirect-cancelled-by-user' && err.code !== 'auth/popup-closed-by-user') {
+          const cleanMsg = err.message
+            .replace('Firebase: ', '')
+            .replace(/\s*\(auth\/[^)]+\)\.?/, '');
+          setLoginError(cleanMsg || 'Google sign-in failed. Please try again.');
+        }
+      });
   }, []);
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -57,28 +86,25 @@ const App = () => {
     return () => window.removeEventListener('openPage', handleOpenPage);
   }, []);
 
-  // 🗂️ Session Management — keyed per user, loaded on login
+  // 🗂️ Session Management (Firebase Firestore Sub-collections)
   const [sessions, setSessions] = useState([]);
   const [activeSessionId, setActiveSessionId] = useState(null);
 
-  // Save sessions to localStorage under this user's UID key
-  const saveSessionsForUser = useCallback((uid, updatedSessions) => {
-    localStorage.setItem(`sec_sessions_${uid}`, JSON.stringify(updatedSessions));
-  }, []);
-
-  // Load sessions from localStorage for a given UID
-  const loadSessionsForUser = useCallback((uid) => {
+  const loadSessionsForUser = useCallback(async (uid) => {
     try {
-      return JSON.parse(localStorage.getItem(`sec_sessions_${uid}`) || '[]');
-    } catch { return []; }
-  }, []);
-
-  // Sync sessions to localStorage whenever they change (only when user is logged in)
-  useEffect(() => {
-    if (user?.uid) {
-      saveSessionsForUser(user.uid, sessions);
+      const q = query(collection(db, 'chats'), where('userId', '==', uid));
+      const querySnapshot = await getDocs(q);
+      const loadedSessions = querySnapshot.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)); // Sort in-memory
+      
+      setSessions(loadedSessions);
+      return loadedSessions;
+    } catch(err) { 
+      console.error("Load sessions error:", err);
+      return []; 
     }
-  }, [sessions, user?.uid, saveSessionsForUser]);
+  }, []);
 
   // 📡 Backend Health Check
   useEffect(() => {
@@ -98,33 +124,36 @@ const App = () => {
   // 🛡️ Auth Listener — single source of truth for user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("Auth State Changed:", currentUser ? currentUser.email : "Logged Out");
+      
       if (currentUser) {
-        // Load this user's sessions from localStorage
-        const userSessions = loadSessionsForUser(currentUser.uid);
-        setSessions(userSessions);
-        setMessages([]);
-        setActiveSessionId(null);
-
-        // Save to Firestore in background — do NOT await before setting user
+        // Prepare Firestore record in background (do NOT await)
         setDoc(doc(db, 'users', currentUser.uid), {
           name: currentUser.displayName || 'User',
           email: currentUser.email || '',
           profileImage: currentUser.photoURL || '',
           lastLogin: serverTimestamp(),
-        }, { merge: true }).catch(err => console.warn('Firestore write failed:', err));
-
+        }, { merge: true }).catch(err => console.warn('Sync to users collection failed:', err));
       } else {
-        // Logout: clear everything
+        // Clear state on logout
         setSessions([]);
         setMessages([]);
         setActiveSessionId(null);
       }
-      // Always update user state and mark auth as resolved
+
+      // Finalize loading state
       setUser(currentUser);
       setAuthLoading(false);
     });
     return () => unsubscribe();
-  }, [loadSessionsForUser]);
+  }, []); // Only run once on mount
+
+  // 📂 Reactive Session Loading — runs whenever 'user' changes (Auth or Guest)
+  useEffect(() => {
+    if (user?.uid) {
+      loadSessionsForUser(user.uid);
+    }
+  }, [user, loadSessionsForUser]);
 
   // ➕ Start a brand new blank session
   const handleNewChat = useCallback(() => {
@@ -132,12 +161,25 @@ const App = () => {
     setActiveSessionId(null);
   }, []);
 
-  // 📂 Load an existing session
-  const handleLoadSession = useCallback((sessionId) => {
+  // 📂 Load an existing session and its messages
+  const handleLoadSession = useCallback(async (sessionId) => {
     const session = sessions.find(s => s.id === sessionId);
-    if (session) {
-      setMessages(session.messages);
-      setActiveSessionId(sessionId);
+    if (!session) return;
+    
+    setLoading(true);
+    setActiveSessionId(sessionId);
+    
+    try {
+       const q = query(collection(db, 'chats', sessionId, 'messages'), orderBy('timestamp', 'asc'));
+       const querySnapshot = await getDocs(q);
+       const msgs = querySnapshot.docs.map(doc => doc.data());
+       setMessages(msgs);
+       setSidebarOpen(false); // Close sidebar on mobile after selection
+    } catch (err) {
+       console.error("Error loading messages:", err);
+       setMessages(session.messages || []); // Fallback to local memory if any
+    } finally {
+       setLoading(false);
     }
   }, [sessions]);
 
@@ -170,17 +212,31 @@ const App = () => {
     let currentSessionId = activeSessionId;
 
     if (isFirstMessage) {
-      const newSessionId = `session_${Date.now()}`;
-      const placeholderSession = {
-        id: newSessionId,
-        title: '✦ Generating title...',
-        createdAt: Date.now(),
-        messages: [userMsg],
-      };
-      setSessions(prev => [placeholderSession, ...prev]);
-      setActiveSessionId(newSessionId);
-      currentSessionId = newSessionId;
+      try {
+        const chatRef = doc(collection(db, 'chats'));
+        currentSessionId = chatRef.id;
+        
+        const newChat = {
+          userId: user.uid,
+          title: '✦ Generating title...',
+          createdAt: serverTimestamp(),
+        };
+        
+        await setDoc(chatRef, newChat);
+        setSessions(prev => [{ id: currentSessionId, ...newChat, createdAt: Date.now() }, ...prev]);
+        setActiveSessionId(currentSessionId);
+      } catch (err) {
+        console.error("Error creating chat:", err);
+        return;
+      }
     }
+
+    // 💾 Save User Message to Firestore sub-collection
+    await addDoc(collection(db, 'chats', currentSessionId, 'messages'), {
+       ...userMsg,
+       content: text, // sync field names with user request
+       timestamp: serverTimestamp()
+    });
 
     try {
       // Use FormData for multi-modal (text + file)
@@ -189,100 +245,141 @@ const App = () => {
       formData.append("user_id", user.uid);
       if (file) formData.append("file", file);
 
+      const controller = new AbortController();
+      setAbortController(controller);
+
       const response = await fetch(`${API_URL}/chat`, {
         method: "POST",
-        body: formData // multipart/form-data
+        body: formData,
+        signal: controller.signal
       });
       
       const data = await response.json();
-      const aiMsg = { role: 'ai', text: data.response, source: data.source };
+      const aiMsg = { 
+        role: 'ai', 
+        content: data.response, 
+        source: data.source, 
+        timestamp: serverTimestamp() 
+      };
+      
       const finalMessages = [...updatedMessages, aiMsg];
       setMessages(finalMessages);
 
-      // 💾 Update session with real messages
-      setSessions(prev => prev.map(s =>
-        s.id === currentSessionId
-          ? { ...s, messages: finalMessages, updatedAt: Date.now() }
-          : s
-      ));
+      // 💾 Save AI Response to Firestore
+      await addDoc(collection(db, 'chats', currentSessionId, 'messages'), aiMsg);
 
-      // 🏷️ Ask AI to generate a smart title (only for the first exchange)
+      // 🏷️ Generate Title for New Session
       if (isFirstMessage) {
         try {
           const titleRes = await fetch(`${API_URL}/generate-title`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              user_message: text,
-              ai_response: data.response
-            })
+            body: JSON.stringify({ user_message: text, ai_response: data.response })
           });
           const titleData = await titleRes.json();
           const smartTitle = titleData.title || text.slice(0, 30);
-
-          // Update session title with the AI-generated name
-          setSessions(prev => prev.map(s =>
-            s.id === currentSessionId
-              ? { ...s, title: smartTitle }
-              : s
-          ));
+          
+          await setDoc(doc(db, 'chats', currentSessionId), { title: smartTitle }, { merge: true });
+          setSessions(prev => prev.map(s => s.id === currentSessionId ? { ...s, title: smartTitle } : s));
         } catch {
-          // Fallback: use first 30 characters of question
-          setSessions(prev => prev.map(s =>
-            s.id === currentSessionId
-              ? { ...s, title: text.slice(0, 30) }
-              : s
-          ));
+          const fallbackTitle = text.slice(0, 30);
+          await setDoc(doc(db, 'chats', currentSessionId), { title: fallbackTitle }, { merge: true });
+          setSessions(prev => prev.map(s => s.id === currentSessionId ? { ...s, title: fallbackTitle } : s));
         }
       }
 
     } catch (err) {
-      const errMsg = { role: 'ai', text: "⚠️ Error syncing with Knowledge Core. Please verify the backend connection." };
-      setMessages(prev => [...prev, errMsg]);
-
-      // Update session even on error
-      setSessions(prev => prev.map(s =>
-        s.id === currentSessionId
-          ? { ...s, messages: [...updatedMessages, errMsg], title: text.slice(0, 30) }
-          : s
-      ));
+      if (err.name === 'AbortError') {
+        const stopMsg = { role: 'ai', content: 'Generation explicitly stopped by user.', timestamp: serverTimestamp() };
+        setMessages(prev => [...prev, stopMsg]);
+        await addDoc(collection(db, 'chats', currentSessionId, 'messages'), stopMsg);
+      } else {
+        const errMsg = { role: 'ai', content: "⚠️ Error syncing with Knowledge Core. Please verify connection.", timestamp: serverTimestamp() };
+        setMessages(prev => [...prev, errMsg]);
+        await addDoc(collection(db, 'chats', currentSessionId, 'messages'), errMsg);
+      }
     } finally {
       setLoading(false);
+      setAbortController(null);
     }
   };
 
   const handleGoogleLogin = async () => {
     setLoginError('');
     try {
-      await signInWithPopup(auth, googleProvider);
+      if (isMobileOrPWA()) {
+        // 📱 Mobile / APK / PWA: Use redirect (avoids popup blocker completely)
+        await signInWithRedirect(auth, googleProvider);
+        // Page will reload — onAuthStateChanged + getRedirectResult handles the rest
+      } else {
+        // 💻 Desktop: Use popup for instant UX
+        const result = await signInWithPopup(auth, googleProvider);
+        if (result?.user) setLoginError('');
+      }
     } catch (err) {
-      setLoginError("Google sign-in failed: " + err.message);
+      if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
+        const cleanMsg = err.message
+          .replace('Firebase: ', '')
+          .replace(/\s*\(auth\/[^)]+\)\.?/, '');
+        setLoginError(cleanMsg || 'Google sign-in failed. Please try again.');
+      }
     }
   };
 
-  const handleGuestLogin = () => {
-    const guestUser = {
-      uid: 'guest_' + Date.now(),
-      displayName: 'Guest User',
-      email: 'guest@student.sec.edu',
-      photoURL: 'https://ui-avatars.com/api/?name=Guest+User&background=10a37f&color=fff'
-    };
-    setUser(guestUser);
-    setSessions([]);
-    setMessages([]);
-    setActiveSessionId(null);
+  const handleEmailAuth = async (e) => {
+    e.preventDefault();
+    setLoginError('');
+    if (!email) return setLoginError("Please enter your email.");
+    
+    if (isSignUpMode) {
+      // Password validation
+      const pwdRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+      if (!pwdRegex.test(password)) {
+        return setLoginError("Password must be 8+ chars and contain 1 uppercase, 1 number, and 1 special char.");
+      }
+    } else if (!password) {
+      return setLoginError("Please enter your password.");
+    }
+
+    setAuthLoading(true);
+    try {
+      if (isSignUpMode) {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        const namePart = email.split('@')[0];
+        await updateProfile(userCred.user, { displayName: namePart });
+        setUser({ ...userCred.user, displayName: namePart }); // force ui update immediately
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+      }
+    } catch (err) {
+      // Cleanup firebase error strings
+      setLoginError(err.message.replace('Firebase: ', ''));
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const handleGuestLogin = async () => {
+    setAuthLoading(true);
+    try {
+      await signInAnonymously(auth);
+    } catch (err) {
+      setLoginError("Guest sign-in failed: " + err.message);
+    } finally {
+      setAuthLoading(false);
+    }
   };
 
   // ─── Auth Loading Screen ────────────────────────────────────────────────────
   if (authLoading) {
     return (
-      <div className="flex h-screen w-screen bg-[#0f0f0f] items-center justify-center">
+      <div className="flex h-[100dvh] w-screen bg-[#0f0f0f] items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <img src="/zentrix-logo.png" alt="Zentrix" className="w-16 h-16 rounded-xl animate-pulse" />
           <div className="flex gap-1.5">
-            <span className="w-2 h-2 bg-[#10a37f] rounded-full animate-bounce" style={{animationDelay:'0ms'}}></span>
-            <span className="w-2 h-2 bg-[#10a37f] rounded-full animate-bounce" style={{animationDelay:'150ms'}}></span>
-            <span className="w-2 h-2 bg-[#10a37f] rounded-full animate-bounce" style={{animationDelay:'300ms'}}></span>
+            <span className="w-2 h-2 bg-[#00e5ff] rounded-full animate-bounce" style={{animationDelay:'0ms'}}></span>
+            <span className="w-2 h-2 bg-[#00e5ff] rounded-full animate-bounce" style={{animationDelay:'150ms'}}></span>
+            <span className="w-2 h-2 bg-[#00e5ff] rounded-full animate-bounce" style={{animationDelay:'300ms'}}></span>
           </div>
           <p className="text-[#a0a0a0] text-sm">Loading Zentrix...</p>
         </div>
@@ -293,28 +390,63 @@ const App = () => {
   // ─── Login Screen ──────────────────────────────────────────────────────────
   if (!user) {
     return (
-      <div className="flex h-screen w-screen bg-[#0f0f0f] items-center justify-center font-sans p-4 overflow-hidden">
-        <div className="bg-[#1a1a1a] p-10 rounded-3xl border border-[#2a2a2a] w-full max-w-md text-center" style={{ animation: 'fadeIn 0.4s ease forwards' }}>
-          <img src="/zentrix-logo.png" alt="Zentrix Logo" className="w-20 h-20 mx-auto mb-4 object-cover rounded-xl shadow-[0_0_20px_rgba(16,163,127,0.3)] animate-pulse" />
+      <div className="flex h-[100dvh] w-screen bg-[#0f0f0f] items-center justify-center font-sans p-4 overflow-y-auto">
+        <div className="bg-[#1a1a1a] p-8 sm:p-10 rounded-3xl border border-[#2a2a2a] w-full max-w-md text-center my-auto" style={{ animation: 'fadeIn 0.4s ease forwards' }}>
+          <img src="/zentrix-logo.png" alt="Zentrix Logo" className="w-20 h-20 mx-auto mb-4 object-cover rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.3)] animate-pulse" />
           <h1 className="text-white font-black text-4xl mb-2">Zentrix</h1>
-          <p className="text-[10px] text-[#a0a0a0] uppercase tracking-widest mb-10 opacity-60">Sudharsan Engineering College</p>
+          <p className="text-[10px] text-[#a0a0a0] uppercase tracking-widest mb-8 opacity-60">Sudharsan Engineering College</p>
           
-          <div className="mb-10">
+          <div className="mb-8">
             <h2 className="text-white text-xl font-bold mb-2">Welcome Back</h2>
             <p className="text-[#a0a0a0] text-sm leading-relaxed">Sign in to access your personalized SEC Knowledge Core with AI-powered assistance.</p>
           </div>
 
           {loginError && (
-            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs mb-6 break-words">
-              {loginError}
-              <p className="mt-2 font-bold text-white">APK Users: If login loops, please use Guest Login below.</p>
+            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs mb-6 break-words text-left">
+              ⚠️ {loginError}
             </div>
           )}
+          
+          <form onSubmit={handleEmailAuth} className="space-y-3 mb-4">
+            <input 
+              type="email" 
+              placeholder="Email address"
+              autoComplete="email"
+              className="w-full bg-[#2a2a2a] border border-[#3a3a3a] text-white p-3 rounded-xl focus:border-[#00e5ff] outline-none transition-colors"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <input 
+              type="password" 
+              placeholder="Password (8+ chars)"
+              autoComplete={isSignUpMode ? 'new-password' : 'current-password'}
+              className="w-full bg-[#2a2a2a] border border-[#3a3a3a] text-white p-3 rounded-xl focus:border-[#00e5ff] outline-none transition-colors"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <button 
+              type="submit"
+              disabled={authLoading}
+              className="w-full bg-[#00e5ff] text-[#0f0f0f] font-bold py-3.5 rounded-xl hover:opacity-90 transition-all active:scale-95 flex justify-center items-center h-12"
+            >
+              {authLoading ? <div className="w-5 h-5 border-2 border-[#0f0f0f] border-t-transparent rounded-full animate-spin"></div> : (isSignUpMode ? 'Create Account' : 'Log In')}
+            </button>
+            <p className="text-xs text-[#a0a0a0] mt-2 cursor-pointer hover:text-white transition-colors" onClick={() => { setIsSignUpMode(!isSignUpMode); setLoginError(''); }}>
+              {isSignUpMode ? 'Already have an account? Log In' : "Don't have an account? Sign Up"}
+            </p>
+          </form>
+
+          <div className="flex items-center gap-3 my-5 opacity-50 px-4">
+            <div className="h-[1px] bg-[#4a4a4a] flex-1"></div>
+            <span className="text-[10px] uppercase font-bold text-[#8a8a8a]">OR</span>
+            <div className="h-[1px] bg-[#4a4a4a] flex-1"></div>
+          </div>
           
           <div className="space-y-3">
             <button 
               onClick={handleGoogleLogin}
-              className="w-full bg-white text-black font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:opacity-90 transition-all active:scale-95 shadow-[0_4px_14px_0_rgba(255,255,255,0.39)]"
+              disabled={authLoading}
+              className="w-full bg-white text-black font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:opacity-90 transition-all active:scale-95 shadow-[0_4px_14px_0_rgba(255,255,255,0.15)] disabled:opacity-60"
             >
               <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" className="w-5" alt="Google" />
               <span>Continue with Google</span>
@@ -322,9 +454,10 @@ const App = () => {
             
             <button 
               onClick={handleGuestLogin}
-              className="w-full bg-[#2a2a2a] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-[#3a3a3a] transition-all active:scale-95 border border-[#3a3a3a]"
+              disabled={authLoading}
+              className="w-full bg-[#2a2a2a] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-[#3a3a3a] transition-all active:scale-95 border border-[#3a3a3a] disabled:opacity-60"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#10a37f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#00e5ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               <span>Continue as Guest</span>
@@ -337,7 +470,7 @@ const App = () => {
 
   // ─── Main App ──────────────────────────────────────────────────────────────
   return (
-    <div className="flex h-screen w-screen bg-[#0f0f0f] font-sans text-white overflow-hidden text-[15px]">
+    <div className="flex h-[100dvh] w-screen bg-[#0f0f0f] font-sans text-white overflow-hidden text-[15px]">
       
       <Sidebar 
         sessions={sessions}
@@ -367,8 +500,19 @@ const App = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className={`hidden sm:flex items-center gap-2 px-3 py-1 rounded-full border border-white/5 bg-white/5 ${backendStatus === 'online' ? 'text-[#10a37f]' : 'text-red-500'}`}>
-              <div className={`w-1.5 h-1.5 rounded-full ${backendStatus === 'online' ? 'bg-[#10a37f]' : 'bg-red-500'}`}></div>
+            {/* Quick New Chat Button for Mobile */}
+            <button 
+              className="md:hidden p-1 text-[#a0a0a0] hover:text-white" 
+              onClick={handleNewChat}
+              title="New Chat"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+            
+            <div className={`hidden sm:flex items-center gap-2 px-3 py-1 rounded-full border border-white/5 bg-white/5 ${backendStatus === 'online' ? 'text-[#00e5ff]' : 'text-red-500'}`}>
+              <div className={`w-1.5 h-1.5 rounded-full ${backendStatus === 'online' ? 'bg-[#00e5ff]' : 'bg-red-500'}`}></div>
               <span className="text-[10px] font-bold uppercase tracking-widest">{backendStatus}</span>
             </div>
           </div>
@@ -379,7 +523,7 @@ const App = () => {
           {messages.length === 0 ? (
             <div className="flex-1 flex items-center justify-center flex-col gap-6 select-none px-4">
               <div className="text-center">
-                <img src="/zentrix-logo.png" alt="Zentrix AI" className="w-16 h-16 rounded-2xl mx-auto mb-4 object-cover shadow-[0_0_20px_rgba(16,163,127,0.3)]" />
+                <img src="/zentrix-logo.png" alt="Zentrix AI" className="w-16 h-16 rounded-2xl mx-auto mb-4 object-cover shadow-[0_0_20px_rgba(0,229,255,0.3)]" />
                 <h2 className="text-2xl font-bold text-white">How can I help you?</h2>
                 <p className="text-sm text-[#a0a0a0] mt-2">Ask me anything about Sudharsan Engineering College</p>
               </div>
@@ -396,7 +540,7 @@ const App = () => {
                     key={q}
                     onClick={() => handleSend(q)}
                     disabled={loading}
-                    className="text-left p-4 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl text-sm text-[#a0a0a0] hover:text-white hover:border-[#10a37f]/40 hover:bg-[#1e1e1e] transition-all disabled:opacity-30 disabled:cursor-not-allowed leading-snug"
+                    className="text-left p-4 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl text-sm text-[#a0a0a0] hover:text-white hover:border-[#00e5ff]/40 hover:bg-[#1e1e1e] transition-all disabled:opacity-30 disabled:cursor-not-allowed leading-snug"
                   >
                     {q}
                   </button>
@@ -406,7 +550,7 @@ const App = () => {
           ) : (
             <ChatWindow messages={messages} loading={loading} />
           )}
-          <ChatInput onSend={handleSend} loading={loading} backendStatus={backendStatus} />
+          <ChatInput onSend={handleSend} loading={loading} backendStatus={backendStatus} onStop={() => abortController?.abort()} />
         </div>
       </div>
       {/* ⚙️ Full Page Settings Overlay */}
@@ -422,9 +566,9 @@ const App = () => {
             {activePage === 'My Profile' ? (
               <div className="flex flex-col items-center mt-6">
                 {user?.photoURL ? (
-                  <img src={user.photoURL} alt="avatar" className="w-24 h-24 rounded-full border-2 border-[#ff8c00] shadow-[0_0_15px_rgba(255,140,0,0.3)] mb-4" />
+                  <img src={user.photoURL} alt="avatar" className="w-24 h-24 rounded-full border-2 border-[#a855f7] shadow-[0_0_15px_rgba(168,85,247,0.3)] mb-4" />
                 ) : (
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#10a37f] to-[#ff8c00] flex items-center justify-center text-white text-3xl font-bold shadow-xl mb-4">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#00e5ff] to-[#a855f7] flex items-center justify-center text-white text-3xl font-bold shadow-xl mb-4">
                     {user?.displayName ? user.displayName[0].toUpperCase() : 'U'}
                   </div>
                 )}

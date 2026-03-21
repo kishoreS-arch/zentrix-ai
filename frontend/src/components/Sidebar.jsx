@@ -70,11 +70,7 @@ const Sidebar = ({ sessions = [], activeSessionId, onNewChat, onLoadSession, onD
 
         <span className="flex-1 truncate text-[14px] font-medium">{session.title}</span>
 
-        {!hovered && session.messages && (
-          <span className="text-[10px] text-[#a0a0a0]/40 font-mono shrink-0">
-            {Math.ceil(session.messages.length / 2)}
-          </span>
-        )}
+
 
         {hovered && (
           <button
@@ -113,12 +109,12 @@ const Sidebar = ({ sessions = [], activeSessionId, onNewChat, onLoadSession, onD
     }
   };
 
-  const navClasses = `fixed top-0 left-0 md:relative z-40 bg-[#171717] h-full flex flex-col w-[260px] transform transition-transform duration-300 ease-in-out border-r border-[#2a2a2a] shrink-0
+  const navClasses = `fixed top-0 left-0 md:relative z-50 bg-[#171717] w-[280px] h-[100dvh] flex flex-col transform transition-transform duration-300 ease-in-out border-r border-[#2a2a2a] shrink-0
     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`;
 
   return (
     <>
-      <div className={`${isSidebarOpen ? 'block' : 'hidden'} md:hidden fixed inset-0 bg-black/50 z-30 transition-opacity`} onClick={() => setSidebarOpen(false)} />
+      <div className={`${isSidebarOpen ? 'block z-40' : 'hidden z-[-1]'} md:hidden fixed inset-0 bg-black/60 transition-opacity w-[100vw] h-[100dvh]`} onClick={() => setSidebarOpen(false)} />
       
       <aside className={navClasses}>
         
@@ -174,7 +170,7 @@ const Sidebar = ({ sessions = [], activeSessionId, onNewChat, onLoadSession, onD
                 {user?.photoURL ? (
                   <img src={user.photoURL} alt="avatar" className="w-8 h-8 rounded-full border border-[#2a2a2a]" />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#10a37f] to-teal-400 flex items-center justify-center text-white text-[13px] font-bold shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#00e5ff] to-teal-400 flex items-center justify-center text-white text-[13px] font-bold shrink-0">
                     {user?.displayName ? user.displayName[0].toUpperCase() : 'U'}
                   </div>
                 )}

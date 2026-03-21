@@ -1,143 +1,173 @@
-SUDHARSAN ENGINEERING COLLEGE (SEC) — COMPLETE OFFICIAL DATA
-Source: https://sec.ac.in/ | Counselling Code: 3920
+SUDHARSAN ENGINEERING COLLEGE (SEC) — COMPLETE INSTITUTIONAL INFORMATION
+Source: https://sec.ac.in | Scraped: March 2026
 
-=== ABOUT THE COLLEGE ===
-Full Name: Sudharsan Engineering College
-Short Name: SEC
-Type: Autonomous Engineering College (UGC Autonomous Status)
-Affiliation: Anna University, Chennai
-Accreditation: NAAC Accredited | NBA Accredited Departments
-Established: 1998 (25+ years of academic excellence)
-Location: Sathiyamangalam, Pudukkottai District, Tamil Nadu - 622 501
-Campus: Green campus spread over 100+ acres
-Website: https://sec.ac.in/
-Status: Approved by AICTE, New Delhi
+==============================================================================
+SECTION 1: ABOUT THE COLLEGE
+==============================================================================
 
-=== UNDERGRADUATE COURSES (B.E. / B.Tech) ===
-1. Computer Science and Engineering (CSE) — 120 seats
-2. Computer Science and Engineering (Cyber Security) — 60 seats
-3. Artificial Intelligence and Machine Learning (AI & ML) — 60 seats
-4. Artificial Intelligence and Data Science (AI & DS) — 60 seats
-5. Electronics and Communication Engineering (ECE) — 120 seats
-6. Electrical and Electronics Engineering (EEE) — 60 seats
-7. Information Technology (IT) — 60 seats
-8. Mechanical Engineering (MECH) — 60 seats
-9. Civil Engineering (CIVIL) — 60 seats
+Full Name: Sudharsan Engineering College (SEC)
+Founded: Year 2000
+Founded By: Sudharsan Educational Trust
+Location: Sathiyamangalam, Pudukkottai District, Tamil Nadu, India
+Website: https://sec.ac.in
+Type: Private Engineering College
 
-=== POSTGRADUATE COURSES (M.E. / MBA) ===
-1. M.E. — Computer Science and Engineering (CSE)
-2. MBA — with specializations in Finance, Systems, HR, and Marketing
+ACCREDITATIONS & RECOGNITIONS:
+- Affiliated to: Anna University, Chennai
+- Approved by: All India Council for Technical Education (AICTE)
+- Accredited by: NAAC with "A" Grade
+- ISO Certified
+- Recognized by: University Grants Commission (UGC)
+- Has: Institution's Innovation Council (IIC) established
+- MOU with APEX (industry collaboration)
 
-=== ADMISSION ELIGIBILITY ===
-For B.E./B.Tech (Lateral Entry excluded):
-- Open Category (OC/BC/BCM): Minimum 45% in 10+2 Physics, Chemistry, Mathematics (PCM)
-- SC/SCA/ST: Minimum 40% in PCM (relaxation as per Tamil Nadu government norms)
-- Admission through TNEA (Tamil Nadu Engineering Admissions) counselling by Anna University
+COLLEGE VISION: Be the best and continuously improve.
+COLLEGE MISSION: Offer the highest quality engineering education in a backward area and bring out engineers with state of the art professional skills, to protect the safety, health and welfare of the society.
 
-Lateral Entry (B.E. 2nd Year):
-- Diploma holders from recognized polytechnics
-- Minimum 45% aggregate in Diploma (40% for SC/ST)
+CAMPUS HIGHLIGHTS:
+- Wi-Fi Enabled Green Campus
+- Well-equipped Laboratories and Workshops
+- State-of-the-art Computer and IT Center
+- Central Library
+- Spacious Auditorium
+- Hygienic Canteen
+- Separate hostels for Boys and Girls
+- Separate Gym facilities for Boys and Girls
 
-=== FEES STRUCTURE (APPROXIMATE PER YEAR) ===
-Government Quota (TNEA Counseling):
-- CSE: Rs. 45,000 – 55,000 per year
-- ECE/EEE/IT: Rs. 40,000 – 50,000 per year
-- Mechanical/Civil: Rs. 35,000 – 45,000 per year
+==============================================================================
+SECTION 2: PROGRAMMES OFFERED
+==============================================================================
 
-Management Quota:
-- CSE/AI&ML/AI&DS/Cyber Security: Rs. 80,000 – 1,00,000 per year
-- ECE/IT: Rs. 75,000 – 90,000 per year
-- Mechanical/Civil/EEE: Rs. 65,000 – 80,000 per year
+UNDERGRADUATE (B.E. / B.Tech) PROGRAMMES — 9 Programs:
+1. B.E. Civil Engineering
+2. B.E. Computer Science and Engineering (CSE)
+3. B.E. Electrical and Electronics Engineering (EEE)
+4. B.E. Electronics and Communication Engineering (ECE)
+5. B.E. Mechanical Engineering
+6. B.E. CSE (Artificial Intelligence and Machine Learning) — AI & ML
+7. B.Tech Artificial Intelligence and Data Science (AI & DS)
+8. B.Tech Information Technology (IT)
+9. B.E. CSE (Cyber Security)
+Plus: Science and Humanities (supporting department)
 
-Note: Exact fees vary by year. Contact admissions for current fee structure.
-Hostel Fees: Approximately Rs. 40,000–55,000 per year (food + accommodation)
+POSTGRADUATE (M.E. / MBA) PROGRAMMES — 2 Programs:
+1. M.E. Computer Science and Engineering
+2. Master of Business Administration (MBA)
+   - MBA Specializations:
+     a. Finance Management
+     b. Human Resource Management
+     c. Marketing Management
+     d. System Management
 
-=== PLACEMENTS ===
-Training and Placement Cell is highly active.
-Average Package: Rs. 3.5 – 5 LPA
-Highest Package: Rs. 12+ LPA (recent graduates)
-Number of companies visited per year: 100+
-Students placed annually: 200+
-Alumni network: 10,000+ professionals
+==============================================================================
+SECTION 3: DEPARTMENT-WISE DETAILS
+==============================================================================
 
-Recent Recruiting Companies:
-Wipro, Infosys, TCS, HCL, Cognizant, Capgemini, L&T Infotech, 
-Delphi TVS Technologies, Tech Mahindra, Zoho, Accenture, 
-Hexaware, Mphasis, BYJU's, Amazon (logistics), Freshworks.
+--- B.E. CIVIL ENGINEERING ---
+Vision: To prepare students as competent Civil Engineering professionals dedicated to the progress and development of humanity and countries.
+HOD: Mr. Sundarraj.S (B.E., M.E. Structural)
 
-Placement Training:
-- Aptitude, Logical Reasoning, Verbal training from 1st year
-- Mock interviews, Group Discussions, Soft skills workshops
-- Industry interface programs and guest lectures
+--- B.E. COMPUTER SCIENCE AND ENGINEERING ---
+Vision: To generate competent professionals to become part of the industry and research organizations at national and international levels.
+Mission: Providing a strong theoretical and practical background with emphasis on software development. Empowering rural youth with computer education. Inculcating professional behavior, strong ethical values, innovative research capabilities, and leadership abilities.
+HOD: Dr. P. Sujatha (Ph.D) — also Vice Principal
 
-=== DEPARTMENTS & FACILITIES ===
-All departments equipped with:
-- Advanced computational labs
-- High-speed internet (24/7 Wi-Fi campus)
-- Smart classrooms with LCD projectors
-- Well-stocked department libraries
+--- B.E. ELECTRICAL AND ELECTRONICS ENGINEERING ---
+Vision: To be a global leader in electrical and electronics engineering education and training by creating competent graduates.
+HOD: Mr. Jeevanantham.R (B.E., M.E.)
 
-Separate labs available for:
-- Networking, Programming, Hardware, AI/ML, IoT, Robotics
-- Electronics, Embedded Systems, PCB Design
-- Mechanical workshops, CAD/CAM, CNC labs
+--- B.E. ELECTRONICS AND COMMUNICATION ENGINEERING ---
+Vision: Create high-quality engineering professionals through research, innovation, and teamwork.
+HOD: Dr. Radhika.S (B.E., M.E., Ph.D.)
 
-=== CONTACT INFORMATION ===
-College Address: Sudharsan Engineering College, Sathiyamangalam, Pudukkottai - 622 501, Tamil Nadu.
+--- B.E. MECHANICAL ENGINEERING ---
+Vision: To develop the department into an advanced center of learning by synergizing teaching, learning, and research.
+HOD: Mr. Arunprasad.M (B.E. Production, M.E. Manufacturing)
 
-Phone Numbers:
-- Principal Office: +91 98434 90901
-- Admissions Office: +91 98434 90905 / +91 98434 90906 / +91 98434 90907
-- Administration: +91 99434 90901
-- General Enquiry: +91 4322 291137
+--- B.TECH ARTIFICIAL INTELLIGENCE AND DATA SCIENCE ---
+HOD: Dr. John Joseph.S (B.Tech IT, M.E., Ph.D.) — 17 years experience
 
+--- MBA ---
+Specializations: Finance, Human Resource, Marketing, System Management
+Senior Faculty: Dr. A. Saranya Devi (Professor), Dr. S. Amudha (Associate Professor)
+
+==============================================================================
+SECTION 4: EVENTS & ACHIEVEMENTS (Recent)
+==============================================================================
+
+RECENT EVENTS:
+- Grand Alumni Meet 2026 (January 10, 2026) — Reunited former students
+- HR Conclave 2026 — Industry HR professionals meet
+- SheNova 2026 — Women's Day Celebration
+- TN Fact Check sensitizing program — Against Digital Media Addiction
+- Organ Donation and Transplantation Awareness Programme
+- Blockchain to Generative AI Event — "Transforming the Digital Era"
+- Smart Campus Challenge — Idea Pitch Competition
+- Research Talk series
+- 77th Republic Day Celebration
+- Entrepreneurship Development Cell (EDC) events
+- Nexora — National Level Technical Symposium
+- Yaan — Kuralin Kural Virudhu Vizha 2026
+- Alumni Tree Plantation Program
+- 26th First Year Inauguration
+- Tamil Kannavu 2025 — Tamil cultural event
+- Sudharsan Pudu Pongal celebration
+- National Level Conference (Upcoming 2026)
+
+==============================================================================
+SECTION 5: CONTACT & LOCATION
+==============================================================================
+
+College Name: Sudharsan Engineering College
+Address: Sathiyamangalam, Pudukkottai - 622 501, Tamil Nadu, India
+Phone: +91 98434 90901 | +91 4322 291137
 Email: info@sudharsanec.edu.in
-Website: https://sec.ac.in/
-Working Hours: Monday to Saturday, 9:00 AM to 5:00 PM
+Website: https://sec.ac.in
+Counselling Code: 2718 (TNEA Counselling Code for SEC)
 
-=== HOSTEL & TRANSPORT ===
-Hostel: Separate hostels for boys and girls on campus
-Transport: College buses connecting nearby towns (Pudukkottai, Trichy, Karaikudi, etc.)
+==============================================================================
+SECTION 6: CSE DEPARTMENT LABS & LIBRARY DETAILS
+==============================================================================
 
-=== SCHOLARSHIPS ===
-- Tamil Nadu Government Scholarships (BC/MBC/SC/ST students)
-- First Graduate Scholarship
-- Merit Scholarship for top-rank students
-- Management scholarship for economically weaker sections
+LABS:
+- CS LAB-02: 35 systems — HP RCT0 280 PRO G6 MT Core i5/10100, 8GB RAM, 128GB SSD, HP Monitor, HP Keyboard, HP Mouse
+- IT LAB-02: 35 systems — Same configuration as CS Lab-02
 
-=== ACTIVITIES & CLUBS ===
-- NSS (National Service Scheme)
-- Sports: Cricket, Football, Basketball, Volleyball, Athletics
-- Cultural Events: Annual Day, Freshers Day, Farewell
-- Technical Symposiums conducted by each department
-- IEEE Student Chapter, CSI Chapter
+CSE LIBRARY:
+- No. of Volumes: 340
+- UG Project Reports: 85
+- PG Project Reports: 54
+- National Journals: 3
+- International Journals: 4
+- CD/DVDs: 11
 
-=== ACCREDITATIONS & ACHIEVEMENTS ===
-- UGC Autonomous Status
-- AICTE Approved
-- Affiliated to Anna University, Chennai
-- NAAC Accredited institution
-- NBA Accreditation for select departments
-- Multiple state and national awards for academic performance
+CSE PROGRAM EDUCATIONAL OBJECTIVES:
+1. Provide graduates proficiency to utilize knowledge of basic sciences, mathematics, AI, data science, and statistics.
+2. Enrich graduates with technical skills to pursue research in AI and Data Science.
+3. Enable graduates to think logically, pursue lifelong learning, with ethical attitude.
+4. Enable graduates to design and model AI-based solutions to real-world problems.
+5. Enrich innovative thoughts and creative ideas for effective contribution towards economy building.
 
-=== FREQUENTLY ASKED QUESTIONS ===
-Q: What is the counselling code for SEC?
-A: 3920
+==============================================================================
+SECTION 7: ACADEMIC ASSOCIATIONS & STUDENT ACTIVITIES
+==============================================================================
 
-Q: Is SEC an autonomous college?
-A: Yes, SEC has UGC Autonomous Status.
+- Each department has its own Technical Association
+- Technical Associations conduct: Technical meetings, Workshops, Events
+- College organizes National-Level Technical Symposia annually
+- Student activities help enhance: Technical knowledge, Managerial competencies, Organizational skills
+- Institutions Innovation Council (IIC) is established and active
+- Entrepreneurship Development Cell (EDC) is active
+- National Service Scheme (NSS) is active
 
-Q: Which university is SEC affiliated to?
-A: Anna University, Chennai.
+==============================================================================
+SECTION 8: ALUMNI & STATISTICS
+==============================================================================
 
-Q: What is the total intake for CSE?
-A: CSE has 120 seats (Government + Management quota combined).
+- Successful Alumni Worldwide: Thousands across global organizations
+- Campus Recruitments: Happen every year
+- Years of Academic Excellence: Over 25 years (since 2000)
+- Trusted hiring partners (companies) visit SEC campus every year for placements
 
-Q: Does SEC have a hostel?
-A: Yes, separate hostels for boys and girls are available on campus.
-
-Q: What is the address of the college?
-A: Sathiyamangalam, Pudukkottai District, Tamil Nadu - 622 501.
-
-Q: What are the top companies that visit SEC for placements?
-A: Wipro, Infosys, TCS, HCL, Cognizant, Capgemini, L&T, Zoho, and many more.
+For specific placement company names, refer to: placements.txt
+For fee structure, refer to: fees.txt

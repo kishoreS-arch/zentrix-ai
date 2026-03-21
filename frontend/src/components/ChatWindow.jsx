@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const ZENTRIX_LOGO = (
-  <div className="w-7 h-7 rounded-full bg-[#10a37f] flex items-center justify-center text-[9px] font-black text-white shrink-0 mt-1">
+  <div className="w-7 h-7 rounded-full bg-[#00e5ff] flex items-center justify-center text-[9px] font-black text-white shrink-0 mt-1">
     ZX
   </div>
 );
@@ -55,7 +55,7 @@ const ChatWindow = ({ messages, loading }) => {
                 {/* 📎 User Attachment Preview */}
                 {msg.role === 'user' && msg.attachment && (
                   <div className="mb-2 flex items-center gap-2 p-2 bg-black/20 rounded-lg border border-white/5 w-fit">
-                    <div className="w-6 h-6 rounded bg-[#10a37f]/20 flex items-center justify-center text-[#10a37f]">
+                    <div className="w-6 h-6 rounded bg-[#00e5ff]/20 flex items-center justify-center text-[#00e5ff]">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7"/></svg>
                     </div>
                     <span className="text-[10px] font-bold truncate max-w-[120px]">{msg.attachment.name}</span>
@@ -68,10 +68,10 @@ const ChatWindow = ({ messages, loading }) => {
                     prose-li:my-0.5 prose-ul:my-1 prose-ol:my-1
                     prose-strong:text-white prose-strong:font-semibold
                     prose-headings:text-white prose-headings:font-semibold prose-headings:my-2">
-                    <ReactMarkdown>{msg.text}</ReactMarkdown>
+                    <ReactMarkdown>{msg.content || msg.text}</ReactMarkdown>
                   </div>
                 ) : (
-                  <p>{msg.text}</p>
+                  <p>{msg.content || msg.text}</p>
                 )}
               </div>
 
@@ -79,7 +79,7 @@ const ChatWindow = ({ messages, loading }) => {
               {msg.role === 'ai' && (
                 <div className="flex items-center gap-1 px-1 opacity-0 hover:opacity-100 transition-opacity duration-200 group">
                   <button
-                    onClick={() => speak(msg.text)}
+                    onClick={() => speak(msg.content || msg.text)}
                     className="flex items-center gap-1 px-2 py-1 rounded-md text-[11px] text-[#a0a0a0] hover:text-white hover:bg-[#1e1e1e] transition-all"
                     title="Read aloud"
                   >
@@ -89,7 +89,7 @@ const ChatWindow = ({ messages, loading }) => {
                     <span>Read</span>
                   </button>
                   <button
-                    onClick={() => copy(msg.text)}
+                    onClick={() => copy(msg.content || msg.text)}
                     className="flex items-center gap-1 px-2 py-1 rounded-md text-[11px] text-[#a0a0a0] hover:text-white hover:bg-[#1e1e1e] transition-all"
                     title="Copy"
                   >

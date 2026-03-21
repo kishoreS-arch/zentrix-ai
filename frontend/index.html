@@ -2,23 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Critical: Full viewport meta for mobile APK/PWA -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
     <title>Zentrix | SEC AI Agent</title>
+    <meta name="description" content="Zentrix — the official AI virtual assistant for Sudharsan Engineering College (SEC). Ask anything about admissions, courses, fees, and more." />
+    
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
-    <link rel="icon" type="image/png" href="/icon-512.png" />
-    <meta name="theme-color" content="#2f81f7" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" href="/icon-512.png" />
+    
+    <!-- Theme -->
+    <meta name="theme-color" content="#00e5ff" />
+    <meta name="background-color" content="#0f0f0f" />
+    
+    <!-- iOS PWA Standalone Mode -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Zentrix" />
+    
+    <!-- Android / Chrome PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Prevent phone number detection -->
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
+      // Register Service Worker for PWA/APK offline support
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(reg => {
-            console.log('Zentrix Service Worker registered!', reg.scope);
-          }).catch(err => {
-            console.log('Service Worker registration failed: ', err);
-          });
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => {
+              console.log('✅ Zentrix SW registered:', reg.scope);
+            })
+            .catch(err => {
+              console.warn('⚠️ SW registration failed:', err);
+            });
         });
       }
     </script>

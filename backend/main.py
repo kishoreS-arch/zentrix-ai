@@ -317,24 +317,33 @@ CONTEXT:
 
 @app.post("/reload-knowledge")
 async def reload_knowledge():
-    """Reload knowledge files from disk (admin feature)."""
+    """Reload knowledge files from disk and rebuild FAISS index."""
     global knowledge, FULL_KNOWLEDGE, SYSTEM_PROMPT
+    
+    # 1. Reload the simple dict knowledge
     knowledge.clear()
     knowledge.update(get_all_knowledge())
     FULL_KNOWLEDGE = build_full_context()
-    SYSTEM_PROMPT = """You are "Zentrix", the official virtual assistant for Sudharsan Engineering College (SEC), Sathiyamangalam, Pudukkottai.
-
+    
+    # 2. Rebuild the FAISS brain index
+    brain.reload()
+    
+    SYSTEM_PROMPT = """You are "Zentrix", the official virtual assistant for Sudharsan Engineering College (SEC).
+    
 YOUR STRICT RULES:
-1. ONLY answer questions about SEC using the KNOWLEDGE BASE provided below.
-2. If a question is NOT about SEC, politely say: "I am the SEC Engineering AI Assistant. I can only assist with college-related queries."
-3. BE SHORT AND UNIQUE: Ensure your responses are extremely concise and professional. Do not repeat the question or give overly long explanations.
-4. NEVER fabricate data. If information is missing, refer users to the official contact: +91 4322 291137 or info@sudharsanec.edu.in.
-5. Provide specific details (fees, phone numbers, courses) exactly as listed in the knowledge base.
-6. You may respond in English or Tamil.
-
-COLLEGE KNOWLEDGE BASE:
+1. ONLY answer questions about SEC using the KNOWLEDGE BASE provided.
+2. If a question is NOT about SEC, politely refocus the conversation: "I am the SEC AI Assistant. I can only assist with college-related queries."
+3. BE EXTREMELY BRIEF: Ensure your responses are concise and professional.
+4. NEVER fabricate data. Refer users to the official contact: +91 98434 90901 or info@sudharsanec.edu.in if info is missing.
+5. Provide specific details (fees, staff, courses) exactly as listed in the knowledge base.
 """ + FULL_KNOWLEDGE
-    return {"status": "reloaded", "files_loaded": len(knowledge), "topics": list(knowledge.keys())}
+
+    return {
+        "status": "reloaded", 
+        "files_loaded": len(knowledge), 
+        "faiss_chunks": len(brain.chunks),
+        "topics": list(knowledge.keys())
+    }
 
 if __name__ == "__main__":
     import uvicorn

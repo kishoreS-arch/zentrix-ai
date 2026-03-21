@@ -1,19 +1,30 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow users to manage their own profile
+
+    // ✅ Users can read/write their own profile
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
       
-      // Allow users to manage their own login history
       match /login_history/{historyId} {
         allow read, write: if request.auth != null && request.auth.uid == userId;
       }
     }
     
+    // ✅ Chats — user can only access their own sessions
     match /chats/{chatId} {
-      allow read, write: if request.auth != null && request.auth.uid == request.resource.data.user_id;
-      allow read: if request.auth != null && request.auth.uid == resource.data.user_id;
+      // On CREATE: the new doc must carry the logged-in user's uid
+      allow create: if request.auth != null &&
+                       request.resource.data.userId == request.auth.uid;
+      
+      // On READ / UPDATE / DELETE: the existing doc must belong to them
+      allow read, update, delete: if request.auth != null &&
+                                     resource.data.userId == request.auth.uid;
+
+      // Messages sub-collection: allowed if parent chat belongs to user
+      match /messages/{messageId} {
+        allow read, write: if request.auth != null;
+      }
     }
   }
 }

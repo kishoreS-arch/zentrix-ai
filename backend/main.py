@@ -1,15 +1,15 @@
 from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
-from utils import knowledge, get_all_knowledge, DATA_DIR
+from utils import knowledge, get_all_knowledge, DATA_DIR, save_chat_to_json
 import os
 from dotenv import load_dotenv
 from groq import Groq
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, List, Dict, Any
 import datetime
-import socket
-import json
 import base64
+import json
+from brain import brain  # 🧠 New FAISS Brain
 
 # Load .env file
 load_dotenv()
@@ -248,52 +248,22 @@ async def chat(
         else:
             attachment_content = f"\n[Attached file: {filename} (Binary/Unsupported for direct text extraction)]"
 
-    # ─── Step 1: Smart Knowledge Retrieval (RAG) ──────────────────────────────
-    user_lower = user_question.lower()
-    STOP_WORDS = {"what", "are", "the", "tell", "me", "about", "who", "is", "how",
-                  "many", "does", "in", "of", "for", "and", "to", "a", "an",
-                  "college", "sec", "can", "you", "give", "details", "some", "at",
-                  "please", "hi", "hello", "okay", "ok", "its"}
+    # ─── Step 1: FAISS Similarity Search (RAG) ──────────────────────────────
+    focused_context = brain.search(user_question, top_k=3)
     
-    keywords = [w.strip("?.!,") for w in user_lower.split()
-                if w.strip("?.!,") not in STOP_WORDS and len(w.strip("?.!,")) > 2]
+    # Still include website context by default if needed, or let brain handle it.
+    # User's FAISS should already include it.
 
-    scored_files = []
-    for filename, content in knowledge.items():
-        score = 0
-        content_lower = content.lower()
-        base = filename.replace("_", " ").replace(".txt", "")
-        if any(k in base for k in keywords): score += 15
-        for kw in keywords: score += content_lower.count(kw)
-        if score > 0: scored_files.append((score, filename, content))
-
-    sec_website_content = knowledge.get("sec_website", "")
-    scored_files.sort(key=lambda x: x[0], reverse=True)
-    top_files = scored_files[:3]
-    
-    context_parts = []
-    added_files = set()
-    if sec_website_content:
-        context_parts.append(f"=== OFFICIAL SEC WEBSITE DATA ===\n{sec_website_content}")
-        added_files.add("sec_website")
-    for score, fname, content in top_files:
-        if fname not in added_files:
-            section_name = fname.replace("_", " ").replace(".txt", "").upper()
-            context_parts.append(f"=== {section_name} ===\n{content}")
-            added_files.add(fname)
-    
-    focused_context = "\n\n".join(context_parts)
 
     # ─── Step 3: Strict Grounded LLM Call  ────────────────────────────────────
     strict_system_prompt = f"""You are "Zentrix", the official AI assistant for Sudharsan Engineering College (SEC).
 
 CRITICAL RULES FOR 100% ACCURACY:
-1. ONLY answer using the EXACT CONTEXT provided below. 
-2. If asked about a specific person (like a Principal, teacher, or founder), and their name is NOT in the CONTEXT below, YOU MUST REPLY: "I currently do not have verified information regarding them."
-3. NEVER assume, guess, or make up names, roles, or phone numbers. If it isn't explicitly in the CONTEXT, you do not know it.
-4. Be CONCISE and DIRECT. Do not over-explain.
-5. If an attachment is provided, analyze it strictly relative to the college.
-6. If details are missing, refer them to +91 98434 90901 or info@sudharsanec.edu.in.
+1. ONLY answer questions about Sudharsan Engineering College (SEC) using the EXACT CONTEXT provided below. 
+2. BE EXTREMELY BRIEF: Answer in maximum 2-3 lines. Be direct and relevant.
+3. If the answer is NOT in the CONTEXT below, YOU MUST REPLY: "I currently do not have verified information regarding them."
+4. NEVER assume, guess, or make up names, roles, or phone numbers. If it isn't explicitly in the CONTEXT, you do not know it.
+5. If details are missing, refer them to +91 98434 90901 or info@sudharsanec.edu.in.
 
 CONTEXT:
 {focused_context}
@@ -316,8 +286,8 @@ CONTEXT:
         client = get_groq_client()
         response = client.chat.completions.create(
             messages=messages,
-            model="llama-3.2-11b-vision-preview" if is_image else "llama-3.3-70b-versatile",
-            max_tokens=600,
+            model="llama-3.2-11b-vision-preview" if is_image else "llama3-70b-8192",
+            max_tokens=256,
             temperature=0.1,
         )
         ai_response = response.choices[0].message.content.strip()

@@ -8,8 +8,6 @@ import {
   db, 
   signInWithPopup, 
   signInAnonymously,
-  signInWithRedirect,
-  getRedirectResult,
   signOut, 
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -26,15 +24,6 @@ import {
   setDoc
 } from './firebase';
 
-// Detect if running on a mobile/PWA/APK environment
-const isMobileOrPWA = () => {
-  const ua = navigator.userAgent || '';
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
-                       window.navigator.standalone === true;
-  return isMobile || isStandalone;
-};
-
 // Always use the Render backend in production; fall back to localhost only when running locally
 const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_URL = import.meta.env.VITE_API_URL || (IS_LOCAL ? "http://localhost:8000" : "https://zentrix-backend-onve.onrender.com");
@@ -44,9 +33,14 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [backendStatus, setBackendStatus] = useState('checking');
   const [user, setUser] = useState(null);
+  // authLoading: true only during the INITIAL Firebase auth state check on page load
   const [authLoading, setAuthLoading] = useState(true);
   const [loginError, setLoginError] = useState('');
-  
+  // Separate per-button loading states — prevents the full-screen loading flash
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [guestLoading, setGuestLoading] = useState(false);
+
   // Custom Auth States
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,27 +48,6 @@ const App = () => {
 
   // Stop Generation Controller
   const [abortController, setAbortController] = useState(null);
-
-  // 🚨 Handle redirect result — MUST run before auth state listener resolves
-  // This catches the case where user comes back from Google OAuth redirect
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then(result => {
-        if (result?.user) {
-          setLoginError('');
-          // onAuthStateChanged will handle setting the user
-        }
-      })
-      .catch(err => {
-        // Ignore cancelled redirects — common when user cancels Google sign-in
-        if (err.code && err.code !== 'auth/redirect-cancelled-by-user' && err.code !== 'auth/popup-closed-by-user') {
-          const cleanMsg = err.message
-            .replace('Firebase: ', '')
-            .replace(/\s*\(auth\/[^)]+\)\.?/, '');
-          setLoginError(cleanMsg || 'Google sign-in failed. Please try again.');
-        }
-      });
-  }, []);
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [activePage, setActivePage] = useState(null);
@@ -306,25 +279,25 @@ const App = () => {
     }
   };
 
+  // ✅ Google Sign-In — always uses Popup (works on all devices including mobile)
+  // signInWithRedirect is intentionally NOT used: Chrome 115+ blocks third-party
+  // storage access on mobile, causing an infinite redirect loop.
   const handleGoogleLogin = async () => {
     setLoginError('');
+    setGoogleLoading(true);
     try {
-      if (isMobileOrPWA()) {
-        // 📱 Mobile / APK / PWA: Use redirect (avoids popup blocker completely)
-        await signInWithRedirect(auth, googleProvider);
-        // Page will reload — onAuthStateChanged + getRedirectResult handles the rest
-      } else {
-        // 💻 Desktop: Use popup for instant UX
-        const result = await signInWithPopup(auth, googleProvider);
-        if (result?.user) setLoginError('');
-      }
+      await signInWithPopup(auth, googleProvider);
+      // onAuthStateChanged will handle setting the user automatically
     } catch (err) {
+      // Silently ignore when user simply closes the popup
       if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
         const cleanMsg = err.message
           .replace('Firebase: ', '')
           .replace(/\s*\(auth\/[^)]+\)\.?/, '');
         setLoginError(cleanMsg || 'Google sign-in failed. Please try again.');
       }
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
@@ -334,41 +307,44 @@ const App = () => {
     if (!email) return setLoginError("Please enter your email.");
     
     if (isSignUpMode) {
-      // Password validation
       const pwdRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
       if (!pwdRegex.test(password)) {
-        return setLoginError("Password must be 8+ chars and contain 1 uppercase, 1 number, and 1 special char.");
+        return setLoginError("Password must be 8+ chars, include 1 uppercase, 1 number, 1 special char (!@#$%^&*).");
       }
     } else if (!password) {
       return setLoginError("Please enter your password.");
     }
 
-    setAuthLoading(true);
+    setEmailLoading(true);
     try {
       if (isSignUpMode) {
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
         const namePart = email.split('@')[0];
         await updateProfile(userCred.user, { displayName: namePart });
-        setUser({ ...userCred.user, displayName: namePart }); // force ui update immediately
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
+      // onAuthStateChanged handles redirect to app
     } catch (err) {
-      // Cleanup firebase error strings
-      setLoginError(err.message.replace('Firebase: ', ''));
+      const cleanMsg = err.message
+        .replace('Firebase: ', '')
+        .replace(/\s*\(auth\/[^)]+\)\.?/, '');
+      setLoginError(cleanMsg || 'Authentication failed. Please try again.');
     } finally {
-      setAuthLoading(false);
+      setEmailLoading(false);
     }
   };
 
   const handleGuestLogin = async () => {
-    setAuthLoading(true);
+    setGuestLoading(true);
+    setLoginError('');
     try {
       await signInAnonymously(auth);
+      // onAuthStateChanged handles redirect to app
     } catch (err) {
-      setLoginError("Guest sign-in failed: " + err.message);
+      setLoginError("Guest sign-in failed. Please try again.");
     } finally {
-      setAuthLoading(false);
+      setGuestLoading(false);
     }
   };
 
@@ -428,10 +404,12 @@ const App = () => {
             />
             <button 
               type="submit"
-              disabled={authLoading}
-              className="w-full bg-[#00e5ff] text-[#0f0f0f] font-bold py-3.5 rounded-xl hover:opacity-90 transition-all active:scale-95 flex justify-center items-center h-12"
+              disabled={emailLoading || googleLoading || guestLoading}
+              className="w-full bg-[#00e5ff] text-[#0f0f0f] font-bold py-3.5 rounded-xl hover:opacity-90 transition-all active:scale-95 flex justify-center items-center h-12 disabled:opacity-60"
             >
-              {authLoading ? <div className="w-5 h-5 border-2 border-[#0f0f0f] border-t-transparent rounded-full animate-spin"></div> : (isSignUpMode ? 'Create Account' : 'Log In')}
+              {emailLoading 
+                ? <div className="w-5 h-5 border-2 border-[#0f0f0f] border-t-transparent rounded-full animate-spin"></div> 
+                : (isSignUpMode ? 'Create Account' : 'Log In')}
             </button>
             <p className="text-xs text-[#a0a0a0] mt-2 cursor-pointer hover:text-white transition-colors" onClick={() => { setIsSignUpMode(!isSignUpMode); setLoginError(''); }}>
               {isSignUpMode ? 'Already have an account? Log In' : "Don't have an account? Sign Up"}
@@ -447,22 +425,28 @@ const App = () => {
           <div className="space-y-3">
             <button 
               onClick={handleGoogleLogin}
-              disabled={authLoading}
+              disabled={googleLoading || emailLoading || guestLoading}
               className="w-full bg-white text-black font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:opacity-90 transition-all active:scale-95 shadow-[0_4px_14px_0_rgba(255,255,255,0.15)] disabled:opacity-60"
             >
-              <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" className="w-5" alt="Google" />
-              <span>Continue with Google</span>
+              {googleLoading 
+                ? <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                : <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" className="w-5" alt="Google" />}
+              <span>{googleLoading ? 'Signing in...' : 'Continue with Google'}</span>
             </button>
             
             <button 
               onClick={handleGuestLogin}
-              disabled={authLoading}
+              disabled={guestLoading || googleLoading || emailLoading}
               className="w-full bg-[#2a2a2a] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-[#3a3a3a] transition-all active:scale-95 border border-[#3a3a3a] disabled:opacity-60"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#00e5ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span>Continue as Guest</span>
+              {guestLoading 
+                ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#00e5ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                )}
+              <span>{guestLoading ? 'Signing in...' : 'Continue as Guest'}</span>
             </button>
           </div>
         </div>

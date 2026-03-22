@@ -1,0 +1,308 @@
+[
+    {
+        "user_id": "test",
+        "question": "give the staff name and quailification of ai and ds",
+        "response": "DR.JOHN JOSEPH.S, B.TECH INFORMATION TECHNOLOGY, M.E COMPUTER SCIENCE AND ENGINEERING, PH.D. \u2013 COMPUTER SCIENCE AND ENGINEERING \nMRS.PORKODI.T, B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING, (PH.D.) IN INFORMATION AND COMMUNICATION ENGINEERING \nMr.DHAVAMANI.M, B.E-COMPUTER SCIENCE AND ENGINEERING, M.E- COMPUTER SCIENCE AND ENGINEERING \nMRS.SELVAKUMARI.N, B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING \nMS.SNEKA.X, B.Sc. COMPUTER SCIENCE, M.Sc.DATA SCIENCE \nMRS.INDU.P, B.E. \u2013 ELECTRONICS AND COMMUNICATIONS ENGINEERING, M.E VLSI Design \nMS.SOWMIYA.M, B.E-ELECTRONICS AND COMMUNICATION ENGINEERING, M.E-VLSI DESIGN",
+        "timestamp": "2026-03-21T23:16:39.178810"
+    },
+    {
+        "user_id": "test",
+        "question": "who is hod of mech",
+        "response": "Mr. Arunprasad.M (B.E. Production, M.E. Manufacturing) is the HOD of B.E. Mechanical Engineering.",
+        "timestamp": "2026-03-21T23:16:43.881981"
+    },
+    {
+        "user_id": "guest",
+        "question": "Who is Sundarraj?",
+        "response": "Mr. Sundarraj.S is the Head of the Department (HOD) of B.E Civil Engineering at Sudharsan Engineering College (SEC). His qualifications are B.E. CIVIL ENGINEERING and M.E STRUCTURAL ENGINEERING.",
+        "timestamp": "2026-03-22T15:44:19.398563"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Civil Engineering?",
+        "response": "Mr. Sundarraj S is the Head of the Department (HOD) of B.E Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.",
+        "timestamp": "2026-03-22T15:57:46.429837"
+    },
+    {
+        "user_id": "test",
+        "question": "List all faculty in CSE department",
+        "response": "Here is the list of faculty in the CSE department:\n\n1. Dr. P. Sujatha - Professor & Head of the Department\n2. Mrs. Parvathi P - Associate Professor\n3. Mrs. Aarthi M - Assistant Professor\n4. Mrs. Rajalakshmi G - Assistant Professor\n5. Ms. Sivapriyanga P - Assistant Professor\n6. Ms. Nandhini N - Assistant Professor\n7. Mr. Ayyapakumar R - Assistant Professor\n8. Mr. Elambaridhi S - Assistant Professor \n\nNote: The list only includes faculty members explicitly mentioned as part of the CSE department in the provided context.",
+        "timestamp": "2026-03-22T15:57:50.178507"
+    },
+    {
+        "user_id": "test",
+        "question": "Show EEE department staff",
+        "response": "Here is the list of EEE department staff:\n \n1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department\n2 | Ms. Hemila Haland.S | Assistant Professor\n3 | Mrs. Amal Philomiya.L | Assistant Professor\n4 | Mrs. Nagalakshmi.R | Assistant Professor\n5 | Mr. Sridhar.V | Assistant Professor\n6 | Mrs. Lakshmi Lauvanya.K | Assistant Professor\n7 | Ms. Indhumathi.G | Assistant Professor",
+        "timestamp": "2026-03-22T15:57:58.665083"
+    },
+    {
+        "user_id": "test",
+        "question": "What is the qualification of Parkavi D C?",
+        "response": "Ms. Parkavi D C holds a B.E. in Civil Engineering, an M.E. in Structural Engineering, and is pursuing a Ph.D. in Structural Engineering.",
+        "timestamp": "2026-03-22T15:58:14.530827"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Civil Engineering?",
+        "response": "Mr. Sundarraj S is the Head of the Department (HOD) of Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.",
+        "timestamp": "2026-03-22T16:04:44.670361"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of CSE?",
+        "response": "Dr. P. Sujatha is the Head of the Department (HOD) of Computer Science & Engineering at Sudharsan Engineering College. She holds a Ph.D. in Computer Science and Engineering.",
+        "timestamp": "2026-03-22T16:04:49.916879"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Civil Engineering?",
+        "response": "Mr. Sundarraj S is the Head of the Department (HOD) of Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.",
+        "timestamp": "2026-03-22T16:05:53.930683"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of CSE?",
+        "response": "Dr. P. Sujatha is the Head of the Department (HOD) of Computer Science & Engineering at Sudharsan Engineering College. She holds a Ph.D. in Computer Science and Engineering.",
+        "timestamp": "2026-03-22T16:06:18.540970"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of EEE?",
+        "response": "Mr. Jeevanantham.R is the Head of the Department (HOD) of B.E Electrical and Electronics Engineering at Sudharsan Engineering College. He holds a B.E. in Electrical and Electronics Engineering and an M.E. in Power Systems Engineering.",
+        "timestamp": "2026-03-22T16:06:39.059471"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Mechanical Engineering?",
+        "response": "Mr. Arunprasad.M is the Head of the Department (HOD) of Mechanical Engineering at Sudharsan Engineering College. He holds a B.E. in Production Engineering, an M.E. in Manufacturing Engineering, and a Ph.D. in Metal Forming.",
+        "timestamp": "2026-03-22T16:07:00.719103"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Civil Engineering?",
+        "response": "Mr. Sundarraj S is the Head of the Department (HOD) of Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.",
+        "timestamp": "2026-03-22T16:07:52.764317"
+    },
+    {
+        "user_id": "test",
+        "question": "Show EEE department staff",
+        "response": "Here is the list of EEE department staff:\n \n1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department\n2 | Ms. Hemila Haland.S | Assistant Professor\n3 | Mrs. Amal Philomiya.L | Assistant Professor\n4 | Mrs. Nagalakshmi.R | Assistant Professor\n5 | Mr. Sridhar.V | Assistant Professor\n6 | Mrs. Lakshmi Lauvanya.K | Assistant Professor\n7 | Ms. Indhumathi.G | Assistant Professor",
+        "timestamp": "2026-03-22T16:08:49.418861"
+    },
+    {
+        "user_id": "test",
+        "question": "How many faculty are there in CSE department?",
+        "response": "There are 8 faculty members in the CSE department:\n\n1. Dr. Sujatha P - Professor & HOD\n2. Mrs. Parvathi P - Associate Professor\n3. Mrs. Aarthi M - Assistant Professor\n4. Mrs. Rajalakshmi G - Assistant Professor\n5. Ms. Sivapriyanga P - Assistant Professor\n6. Ms. Nandhini N - Assistant Professor\n7. Mr. Ayyapakumar R - Assistant Professor\n8. Mr. Elambaridhi S - Assistant Professor",
+        "timestamp": "2026-03-22T16:08:54.503690"
+    },
+    {
+        "user_id": "test",
+        "question": "List MBA department staff",
+        "response": "Here is the list of MBA department staff:\n1. Dr. A. Saranya Devi - Professor\n2. Dr. S. Amudha - Associate Professor\n3. Mrs. A. Judith Matharasi Angeline - Assistant Professor",
+        "timestamp": "2026-03-22T16:09:45.618608"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is DR. SARANYA DEVI?",
+        "response": "Dr. A. Saranya Devi is a Professor in the Department of Master of Business Administration at Sudharsan Engineering College. She holds a B.Sc. in Information Systems, an M.B.A. in Business Administration, and a Ph.D. in Business Administration.",
+        "timestamp": "2026-03-22T16:09:50.512242"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Civil Engineering?",
+        "response": "Mr. Sundarraj S is the Head of the Department (HOD) of B.E Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.",
+        "timestamp": "2026-03-22T16:12:46.125951"
+    },
+    {
+        "user_id": "test",
+        "question": "Show EEE department staff",
+        "response": "| S.No | Name | Designation |\n|---|---|---|\n| 1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department |\n| 2 | Ms. Hemila Haland.S | Assistant Professor |\n| 3 | Mrs. Amal Philomia.L | Assistant Professor |\n| 4 | Mrs. Nagalakshmi.R | Assistant Professor |\n| 5 | Mr. Sridhar.V | Assistant Professor |\n| 6 | Mrs. Lakshmi Lauvanya.K | Assistant Professor |\n| 7 | Ms. Indhumathi.G | Assistant Professor |",
+        "timestamp": "2026-03-22T16:12:50.289191"
+    },
+    {
+        "user_id": "test",
+        "question": "How many faculty are there in CSE department?",
+        "response": "There are 9 faculty members in the CSE department:\n\n1. Dr. Sujatha P\n2. Mrs. Parvathi P\n3. Mrs. Aarthi M\n4. Mrs. Rajalakshmi G\n5. Ms. Sivapriyanga P\n6. Ms. Nandhini N\n7. Mr. Ayyapakumar R\n8. Mr. Elambaridhi S\n9. Ms. Suhasini C",
+        "timestamp": "2026-03-22T16:12:54.626487"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is DR. SARANYA DEVI?",
+        "response": "Dr. A. Saranya Devi is a Professor in the Department of Master of Business Administration at Sudharsan Engineering College. She holds a B.Sc. in Information Systems, an M.B.A. in Business Administration, and a Ph.D. in Business Administration.",
+        "timestamp": "2026-03-22T16:13:47.537106"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is the HOD of Civil Engineering?",
+        "response": "Mr. Sundarraj S is the Head of the Department (HOD) of B.E Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.",
+        "timestamp": "2026-03-22T16:15:50.303297"
+    },
+    {
+        "user_id": "test",
+        "question": "Show EEE department staff",
+        "response": "| S.No | Name | Designation |\n|---|---|---|\n| 1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department |\n| 2 | MS. HEMILA HALAND.S | Assistant Professor |\n| 3 | MRS. AMAL PHILOMIYA.L | Assistant Professor |\n| 4 | MRS. NAGALAKSHMI.R | Assistant Professor |\n| 5 | MR. SRIDHAR.V | Assistant Professor |\n| 6 | MRS. LAKSHMI LAUVANYA.K | Assistant Professor |\n| 7 | MS. INDHUMATHI.G | Assistant Professor |",
+        "timestamp": "2026-03-22T16:15:54.950826"
+    },
+    {
+        "user_id": "test",
+        "question": "How many faculty are there in CSE department?",
+        "response": "There are 8 faculty members in the CSE department:\n\n1. Dr. Sujatha P\n2. Mrs. Parvathi P\n3. Mrs. Aarthi M\n4. Mrs. Rajalakshmi G\n5. Ms. Sivapriyanga P\n6. Ms. Nandhini N\n7. Mr. Ayyapakumar R\n8. Mr. Elambaridhi S",
+        "timestamp": "2026-03-22T16:16:46.669655"
+    },
+    {
+        "user_id": "test",
+        "question": "List MBA department staff",
+        "response": "| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. A. Saranya Devi | Professor |\n| 2 | Dr. S. Amudha | Associate Professor |\n| 3 | Mrs. A. Judith Matharasi Angeline | Assistant Professor |\n| 4 | Dr. A. Abbas Ali | Professor |\n| 5 | Mrs. Priya.C | Assistant Professor |",
+        "timestamp": "2026-03-22T16:17:19.537551"
+    },
+    {
+        "user_id": "test",
+        "question": "Who is DR. SARANYA DEVI?",
+        "response": "Dr. A. Saranya Devi is a Professor in the Department of Master of Business Administration at Sudharsan Engineering College. She holds a B.Sc. in Information Systems, an M.B.A. in Business Administration, and a Ph.D. in Business Administration.",
+        "timestamp": "2026-03-22T16:18:15.415692"
+    },
+    {
+        "user_id": "test",
+        "question": "Show EEE department staff",
+        "response": "| S.No | Name | Designation |\n|---|---|---|\n| 1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department |\n| 2 | MS. HEMILA HALAND.S | Assistant Professor |\n| 3 | MRS. AMAL PHILOMIYA.L | Assistant Professor |\n| 4 | MRS. NAGALAKSHMI.R | Assistant Professor |\n| 5 | MR. SRIDHAR.V | Assistant Professor |\n| 6 | MRS. LAKSHMI LAUVANYA.K | Assistant Professor |\n| 7 | MS. INDHUMATHI.G | Assistant Professor |",
+        "timestamp": "2026-03-22T16:26:23.172892"
+    },
+    {
+        "user_id": "test",
+        "question": "Show EEE department staff",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department |\n| 2 | MS. HEMILA HALAND.S | Assistant Professor |\n| 3 | MRS. AMAL PHILOMIYA.L | Assistant Professor |\n| 4 | MRS. NAGALAKSHMI.R | Assistant Professor |\n| 5 | MR. SRIDHAR.V | Assistant Professor |\n| 6 | MRS. LAKSHMI LAUVANYA.K | Assistant Professor |\n| 7 | MS. INDHUMATHI.G | Assistant Professor |",
+        "timestamp": "2026-03-22T16:35:38.081901"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "Who is the HOD of Computer Science Engineering?",
+        "response": "ZENTRIX-V2: Dr. Sujatha P is the Head of the Department (HOD) of B.E Computer Science and Engineering at Sudharsan Engineering College. She holds a B.E. in Computer Science and Engineering, an M.E. in Computer Science and Engineering, and a Ph.D. in Computer Science and Engineering.",
+        "timestamp": "2026-03-22T19:55:09.007948"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "who is hod of eee",
+        "response": "ZENTRIX-V2: Mr. Jeevanantham.R is the Head of the Department (HOD) of B.E Electrical and Electronics Engineering at Sudharsan Engineering College. He holds a B.E. in Electrical and Electronics Engineering and an M.E. in Power Systems Engineering.",
+        "timestamp": "2026-03-22T19:55:59.440985"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "name the staff in AI and ds",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. John Joseph.S | Assistant Professor & Head of the Department |\n| 2 | Ms. Snekha.X | Teaching Assistant |\n| 3 | Mrs. Porkodi.T | Assistant Professor |\n| 4 | Mrs. Selvakumari.N | Assistant Professor |\n| 5 | Mr. Dhavamani.M | Assistant Professor |\n| 6 | Ms. Ganga Lakshmi.M | Assistant Professor |\n| 7 | Mrs. Mary Jansi Rani.A | Assistant Professor |\n| 8 | Mrs. Indu.P | Assistant Professor |\n| 9 | Mrs. Jeni Priyanga.I | Technical Assistant |",
+        "timestamp": "2026-03-22T19:56:36.448059"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "how many staffs in cse",
+        "response": "ZENTRIX-V2: There are 13 staff members in the CSE department.\n\n1. Dr. Sujatha P\n2. Mrs. Parvathi P\n3. Mrs. Aarthi M\n4. Mrs. Rajalakshmi G\n5. Ms. Sivapriyanga P\n6. Ms. Nandhini N\n7. Mr. Ayyapakumar R\n8. Mr. Elambaridhi S\n9. Ms. Kavitha R\n10. Ms. Gangalakshmi M\n11. Ms. Suhasini C\n12. Ms. Mary Jansi Rani A\n13. Mr. M. Sivaraman",
+        "timestamp": "2026-03-22T19:57:34.847765"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "what did suhasini studied",
+        "response": "ZENTRIX-V2: Ms. Suhasini C studied B.E in Electronics and Communication Engineering and M.E in Computer Science and Engineering.",
+        "timestamp": "2026-03-22T19:58:36.877408"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "do you know sneka",
+        "response": "ZENTRIX-V2: Yes, I have information about MS. SNEKA.X. She is a Teaching Assistant in the Department of B.Tech Artificial Intelligence and Data Science. Her qualifications include a B.Sc. in Computer Science and an M.Sc. in Data Science.",
+        "timestamp": "2026-03-22T19:58:57.188081"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "there are how many hod's",
+        "response": "There are 6 HODs mentioned in the context:\n\n| Department | HOD Name |\n|---|---|\n| B.E Civil Engineering | Mr. Sundarraj S |\n| B.E Computer Science and Engineering | Dr. P. Sujatha |\n| B.E Electrical and Electronics Engineering | Mr. Jeevanantham.R |\n| B.E Mechanical Engineering | Mr. Arunprasad.M |\n| B.E CSE(Artificial Intelligence and Machine Learning) | Ms. Kavitha.R |\n| B.Tech Artificial Intelligence and Data Science | Dr. John Joseph.S |",
+        "timestamp": "2026-03-22T19:59:19.367566"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff for physis",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | DR.CHANDRAN.P | Professor |\n| 2 | MR.VIJAY ANAND.K | Assistant Professor |\n| 3 | MR.BALASUBRAMANIYAN.G | Assistant Professor |\n| 4 | MR.THIRUMENI.D | Assistant Professor |\n| 5 | MRS.BANU.P | Assistant Professor |\n| 6 | MRS.UMA MAHESHWARI.N | Assistant Professor |\n| 7 | Dr.MUBINA NANCY | Assistant Professor |\n| 8 | MRS.MUTHUSELVI.K | Assistant Professor |",
+        "timestamp": "2026-03-22T20:02:38.116955"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff for maths",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | MRS.BANU.P | Assistant Professor |\n| 2 | MR.THIRUMENI.D | Assistant Professor |\n| 3 | Dr.MUBINA NANCY | Assistant Professor |\n| 4 | Mrs.MUTHUSELVI.K | Assistant Professor |\n| 5 | Mrs.UMA MAHESHWARI.N | Assistant Professor |",
+        "timestamp": "2026-03-22T20:02:55.212051"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff for english",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Mr.Nitheesh Krishnan.B | Assistant Professor |\n| 2 | Mr.Surendhar.P | Assistant Professor |\n| 3 | Mrs.Priya.C | Assistant Professor |\n| 4 | Ms. Rexcy.A | Assistant Professor |\n| 5 | Dr.Janagar.M | Professor |",
+        "timestamp": "2026-03-22T20:03:58.703505"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "for physics",
+        "response": "ZENTRIX-V2: \nDepartment | HOD Name\n|---|---|\n| DEPARTMENT OF PHYSICS | DR.CHANDRAN.P",
+        "timestamp": "2026-03-22T20:04:49.599154"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff for ai and ml",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. John Joseph.S | Assistant Professor & Head of the Department |\n| 2 | Ms. Parkavi D C | Assistant Professor |\n| 3 | Ms. Suhasini C | Assistant Professor |\n| 4 | Ms. Mary Jansi Rani A | Assistant Professor |\n| 5 | Ms. Sivapriyanga P | Assistant Professor |\n| 6 | Ms. Nandhini N | Assistant Professor |\n| 7 | Mr. Ayyapakumar R | Assistant Professor |\n| 8 | Mr. Elambaridhi S | Assistant Professor |\n| 9 | Ms. Sneka X | Teaching Assistant |\n| 10 | Ms. Sowmiya M | Assistant Professor |\n| 11 | Mr. Dhamani M | Assistant Professor |\n| 12 | Ms. Ganga Lakshmi M | Assistant Professor |\n| 13 | Ms. Indhumathi G | Assistant Professor |\n| 14 | Ms. Porkodi T | Assistant Professor |\n| 15 | Ms. Selvakumari N | Assistant Professor |\n| 16 | Ms. Indu P | Assistant Professor |\n| 17 | Ms. Sivapriyanga P | Assistant Professor |\n| 18 | Ms. Sowmiya M | Assistant Professor |\n| 19 | Mr. Dhamani M | Assistant Professor |\n| 20 | Ms. Ganga Lakshmi M | Assistant Professor |",
+        "timestamp": "2026-03-22T20:27:20.739002"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff of AI ML",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Ms. Parkavi D C | Assistant Professor |\n| 2 | Ms. Shornambigai M | Assistant Professor |\n| 3 | Dr. Sujatha P | Professor & HOD |\n| 4 | Mrs. Parvathi P | Associate Professor |\n| 5 | Mrs. Aarthi M | Assistant Professor |\n| 6 | Ms. Sivapriyanga P | Assistant Professor |\n| 7 | Ms. Nandhini N | Assistant Professor |\n| 8 | Mr. Ayyapakumar R | Assistant Professor |\n| 9 | Mr. Elambaridhi S | Assistant Professor |\n| 10 | Ms. Kavitha R | Assistant Professor & HOD |\n| 11 | Ms. Ganga Lakshmi M | Assistant Professor |\n| 12 | Ms. Suhasini C | Assistant Professor |\n| 13 | Ms. Mary Jansi Rani A | Assistant Professor |\n| 14 | Dr. John Joseph S | Assistant Professor & HOD |\n| 15 | Ms. Snekha X | Teaching Assistant |\n| 16 | Ms. Sowmiya M | Assistant Professor |\n| 17 | Mr. Dhavamani M | Assistant Professor |",
+        "timestamp": "2026-03-22T20:27:56.436802"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff of ai ds",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. John Joseph.S | Assistant Professor & Head of the Department |\n| 2 | Ms. Sowmiya.M | Assistant Professor |\n| 3 | Mr. Dhavamani.M | Assistant Professor |\n| 4 | Ms. Snekha.X | Teaching Assistant |\n| 5 | Ms. Indu.P | Assistant Professor |\n| 6 | Ms. Selvakumari.N | Assistant Professor |\n| 7 | Ms. Porkodi.T | Assistant Professor |",
+        "timestamp": "2026-03-22T20:33:06.970486"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff of ai ml",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. Sujatha P | Professor & HOD |\n| 2 | Mrs. Parvathi P | Associate Professor |\n| 3 | Mrs. Aarthi M | Assistant Professor |\n| 4 | Mrs. Rajalakshmi G | Assistant Professor |\n| 5 | Ms. Sivapriyanga P | Assistant Professor |\n| 6 | Ms. Nandhini N | Assistant Professor |\n| 7 | Mr. Ayyapakumar R | Assistant Professor |\n| 8 | Mr. Elambaridhi S | Assistant Professor |\n| 9 | Ms. Gangalakshmi M | Assistant Professor |\n| 10 | Ms. Suhasini C | Assistant Professor |\n| 11 | Mrs. Mary Jansi Rani A | Assistant Professor |\n| 12 | Ms. Kavitha R | Assistant Professor & HOD |\n| 13 | Ms. Sowmiya M | Assistant Professor |\n| 14 | Mr. Dhavamani M | Assistant Professor |\n| 15 | Ms. Sneka X | Teaching Assistant |",
+        "timestamp": "2026-03-22T20:33:18.686369"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff of cse",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. Sujatha P | Professor & HOD |\n| 2 | Mrs. Parvathi P | Associate Professor |\n| 3 | Mrs. Aarthi M | Assistant Professor |\n| 4 | Mrs. Rajalakshmi G | Assistant Professor |\n| 5 | Ms. Sivapriyangaa P | Assistant Professor |\n| 6 | Ms. Nandhini N | Assistant Professor |\n| 7 | Mr. Ayyapakumar R | Assistant Professor |\n| 8 | Mr. Elambaridhi S | Assistant Professor |\n| 9 | Mr. Jeevanantham R | Assistant Professor & HOD |\n| 10 | Ms. Hemila Haland S | Assistant Professor |\n| 11 | Mrs. Amal Philomiya L | Assistant Professor |\n| 12 | Mrs. Nagalakshmi R | Assistant Professor |\n| 13 | Mr. Sridhar V | Assistant Professor |\n| 14 | Mrs. Lakshmi Lauvanya K | Assistant Professor |\n| 15 | Ms. Indhumathi G | Assistant Professor |\n| 16 | Mr. Sarath Babu R | Associate Professor |\n| 17 | Mr. Ramesh D | Assistant Professor |\n| 18 | Mrs. Jennifer Nirosha A | Assistant Professor |\n| 19 | Ms. Jamuna Rani P | Assistant Professor |\n| 20 | Mrs. Priya U | Assistant Professor |\n| 21 | Mrs. Keerthana Lakshmi M | Assistant Professor |\n| 22 | Mr. Arunprasad M | Assistant Professor & HOD |\n| 23 | Mr. Thirumavalavan R | Associate Professor |\n| 24 | Mr. Vinoth Raj D | Assistant Professor |\n| 25 | Mr. Uma Seelan P | Assistant Professor |\n| 26 | Mr. Manivannan P | Assistant Professor |\n| 27 | Mr. Gunasekar D | Assistant Professor |\n| 28 | Mr. Keerthivasan P | Assistant Professor |\n| 29 | Mrs. Kavitha R | Assistant Professor & HOD |\n| 30 | Ms. Ganga Lakshmi M | Assistant Professor |\n| 31 | Ms. Suhasini C | Assistant Professor |\n| 32 | Mrs. Mary Jansi Rani A | Assistant Professor |\n| 33 | Dr. John Joseph S | Assistant Professor & HOD |\n| 34 | Mrs. Porkodi T | Assistant Professor |\n| 35 | Mrs. Selvakumari N | Assistant Professor |\n| 36 | Mrs. Indu P | Assistant Professor |\n| 37 | Ms. Sneka X | Teaching Assistant |\n| 38 | Ms. Sowmiya M | Assistant Professor |\n| 39 | Mr. Dhaivamani M | Assistant Professor |\n| 40 | Mrs. Jeni Priyanga I | Technical Assistant |\n| 41 | Mr. M. Sivaraman | Assistant Professor |\n| 42 | Mrs. A. Judith Matharasi Angelina | Assistant Professor |\n| 43 | Dr. A. Saranya Devi | Professor |\n| 44 | Dr. S. Amudha | Associate Professor |\n| 45 | Dr. Abbas Ali A | Professor |\n| 46 | Mr. Narayanan G | Associate Professor |\n| 47 | Mr. Marimuthu T | Assistant Professor |\n| 48 | Dr. Chandran P | Professor |\n| 49 | Mr. Vijay Anand K | Assistant Professor |\n| 50 | Mr. Balasubramanian G | Assistant Professor |",
+        "timestamp": "2026-03-22T20:34:36.501194"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff of ai ml",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | MRS.KAVITHA.R | ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT |\n| 2 | MS.GANGA LAKSHMI.M | ASSISTANT PROFESSOR |\n| 3 | MS.SUHASINI.C | ASSISTANT PROFESSOR |\n| 4 | MRS.MARY JANSI RANI.A | ASSISTANT PROFESSOR |",
+        "timestamp": "2026-03-22T20:41:21.277724"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff of cse",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | MR. M. SIVARAMAN | ASSISTANT PROFESSOR |\n| 2 | MS.SUHASINI.C | ASSISTANT PROFESSOR |\n| 3 | MS.GANGA LAKSHMI.M | ASSISTANT PROFESSOR |\n| 4 | MRS.MARY JANSI RANI.A | ASSISTANT PROFESSOR |\n| 5 | MRS.RAJALAKSHMI.G | ASSISTANT PROFESSOR |\n| 6 | MRS.KAVITHA.R | ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT |\n| 7 | MS.SNEKA.X | TEACHING ASSISTANT |\n| 8 | Mr.ELAMBARIDHI.S | ASSISTANT PROFESSOR |\n| 9 | Dr.SUJATHA.P | PROFESSOR & HEAD OF THE DEPARTMENT |",
+        "timestamp": "2026-03-22T20:41:36.566800"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff ece",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | MR.SARATHBABU.R | ASSOCIATE PROFESSOR |\n| 2 | MR.RAMESH.D | ASSISTANT PROFESSOR |\n| 3 | MRS.JENIFER NIROSHA.A | ASSISTANT PROFESSOR |\n| 4 | MS.JAMUNA RANI.P | ASSISTANT PROFESSOR |\n| 5 | MRS.PRIYA.U | ASSISTANT PROFESSOR |\n| 6 | MRS.KEERTHANA LAKSHMI.M | ASSISTANT PROFESSOR |",
+        "timestamp": "2026-03-22T20:42:01.192503"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "What courses are offered at SEC?",
+        "response": "ZENTRIX-V2: The college offers undergraduate courses like B.E. in CSE, IT, ECE, EEE, Mechanical, Civil, AI & DS, and AI & ML, along with postgraduate courses like MBA and M.E.",
+        "timestamp": "2026-03-22T20:44:36.800368"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "staff cse",
+        "response": "ZENTRIX-V2:\n| S.No | Name | Designation |\n|---|---|---|\n| 1 | Dr. Sujatha P | Professor & HOD |\n| 2 | Mrs. Parvathi P | Associate Professor |\n| 3 | Mrs. Aarthi M | Assistant Professor |\n| 4 | MR. M. SIVARAMAN | Assistant Professor |",
+        "timestamp": "2026-03-22T20:44:47.974342"
+    },
+    {
+        "user_id": "XFZor4O4t2bIPSwJv97v9qOhwjp2",
+        "question": "ai ml",
+        "response": "ZENTRIX-V2: \n| S.No | Name | Designation |\n|---|---|---|\n| 1 | MRS.KAVITHA.R | ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT |\n| 2 | MRS.MARY JANSI RANI.A | ASSISTANT PROFESSOR |\n| 3 | MS.GANGA LAKSHMI.M | ASSISTANT PROFESSOR |\n| 4 | MS.SUHASINI.C | ASSISTANT PROFESSOR |",
+        "timestamp": "2026-03-22T20:50:03.017262"
+    }
+]

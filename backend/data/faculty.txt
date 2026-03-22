@@ -3,24 +3,8 @@ Source: https://sec.ac.in
 Last Updated: March 2026
 
 ==============================================================================
-SECTION 1: COLLEGE LEADERSHIP
+SECTION 1: COLLEGE LEADERSHIP & MANAGEMENT
 ==============================================================================
-
-PRINCIPAL:
-- Dr. M. Arulkumaran — Principal, Sudharsan Engineering College
-  (Over 30 years of academic and administrative experience)
-
-VICE PRINCIPAL:
-- Dr. P. Sujatha — Vice Principal & Head of Department, Computer Science & Engineering
-  Qualification: B.E., M.E., Ph.D.
-
-ADMINISTRATIVE OFFICER:
-- Mr. S. Moorthy — Administrative Officer
-
-==============================================================================
-SECTION 2: MANAGEMENT & GOVERNING BODY (SUDHARSAN EDUCATIONAL TRUST)
-==============================================================================
-
 - Shri. V.K. Sundaram — Chairman Emeritus, Sudharsan Educational Trust
 - Shri. K. Vijay Kumar — Chairman, Sudharsan Educational Trust
 - Shri. K. Ajay Kumar — Vice Chairman, Sudharsan Educational Trust
@@ -29,195 +13,157 @@ SECTION 2: MANAGEMENT & GOVERNING BODY (SUDHARSAN EDUCATIONAL TRUST)
 - Mr. Harish Balasundaram — Director, Sudharsan Engineering College
 - Dr. N.R. Shetty — Advisor & Governing Board Member
 
-==============================================================================
-SECTION 3: DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING (CSE)
-==============================================================================
+PRINCIPAL:
+- Dr. M. Arulkumaran — Principal, Sudharsan Engineering College
+(Over 30 years of academic and administrative experience)
 
-HEAD OF DEPARTMENT:
-- Dr. P. Sujatha — Professor & Head of Department, CSE
-  Qualification: B.E., M.E., Ph.D.
-  (Also serves as Vice Principal of the College)
+VICE PRINCIPAL:
+- Dr. P. Sujatha — Vice Principal & Head of Department, Computer Science & Engineering
 
-ASSOCIATE PROFESSOR:
-- Mrs. Parvathi.P — Associate Professor
-  Qualification: M.Sc CS & IT, M.Tech
-
-ASSISTANT PROFESSORS:
-- Ms. Panchavarnam.N — Assistant Professor, Qualification: B.E., M.E.
-- Ms. Malairani.K — Assistant Professor, Qualification: B.E., M.E.
-- Ms. Priya Dharshini.G — Assistant Professor, Qualification: B.E., M.E.
-- Ms. Durga Devi.G — Assistant Professor, Qualification: B.E., M.E.
-- Mr. Ayyapakumaran.R — Assistant Professor, Qualification: B.E., M.E.
-- Mr. Elambaridhi.S — Assistant Professor, Qualification: B.E., M.E.
-
-CSE DEPARTMENT INFO:
-- Vision: To generate competent professionals to become part of the industry and research organizations at national and international levels.
-- Mission: Providing a strong theoretical and practical background across the computer science discipline with an emphasis on software development. Empowering youth in rural communities with computer education.
-- CSE Library: 340 volumes, 85 UG project reports, 54 PG project reports, 3 national journals, 4 international journals, 11 CDs/DVDs.
-- Lab: CS LAB-02 with 35 systems (HP RCT0 280 PRO G6 MT, Core i5/10100, 8GB RAM, 128GB SSD)
-- Lab: IT LAB-02 with 35 systems (same configuration)
-
-==============================================================================
-SECTION 4: DEPARTMENT OF ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)
-==============================================================================
-
-HEAD OF DEPARTMENT:
-- Dr. John Joseph.S — Assistant Professor & Head of Department, AI & DS
-  Qualification: B.Tech IT, M.E., Ph.D.
-  (17 years of academic experience)
-
-ASSISTANT PROFESSORS:
-- Mrs. Porkodi.T — Assistant Professor, Qualification: B.E., M.E., (Ph.D pursuing)
-- Mrs. Selvakumari.N — Assistant Professor, Qualification: B.E., M.E., (Ph.D pursuing)
-- Ms. Hemalatha.N — Assistant Professor, Qualification: B.E., M.E.
-- Mr. Jai Ganesh.S — Assistant Professor, Qualification: B.E., M.E.
-
-==============================================================================
-SECTION 5: DEPARTMENT OF CSE (ARTIFICIAL INTELLIGENCE & MACHINE LEARNING)
-==============================================================================
-
-(The AI & ML department faculty members are listed under AI & DS above. The department shares resources under CSE branch with ML specialization.)
-
-==============================================================================
-SECTION 6: DEPARTMENT OF ELECTRONICS & COMMUNICATION ENGINEERING (ECE)
-==============================================================================
-
-HEAD OF DEPARTMENT:
-- Dr. Radhika.S — Professor & Head of Department, ECE
-  Qualification: B.E., M.E., Ph.D.
-
-ASSOCIATE PROFESSOR:
-- Mr. Sarathbabu.R — Associate Professor, Qualification: B.E., M.E., (Ph.D pursuing)
-
-ASSISTANT PROFESSORS:
-- Mr. Ramesh.D — Assistant Professor, Qualification: B.E., M.E., (Ph.D pursuing)
-- Ms. Revathi.M — Assistant Professor
-- Mrs. Devi.V — Assistant Professor
-- Mrs. Jenifer Nirosha.A — Assistant Professor
-- Ms. Jamuna Rani.P — Assistant Professor
-- Mrs. Priya.U — Assistant Professor
-- Mrs. Keerthana Lakshmi.M — Assistant Professor
-
-==============================================================================
-SECTION 7: DEPARTMENT OF CIVIL ENGINEERING
-==============================================================================
-
-HEAD OF DEPARTMENT:
-- Mr. Sundarraj.S — Assistant Professor & Head of Department, Civil Engineering
-  Qualification: B.E., M.E. (Structural Engineering)
-
-ASSISTANT PROFESSORS:
-- Mr. Siva.P — Assistant Professor
-- Mr. Manoharan.R — Assistant Professor
-- Ms. Rathis.A — Assistant Professor
-- Ms. Arthini.M — Assistant Professor
-- Ms. Gayathri Devi.R — Assistant Professor
-- Ms. Bhuvaneshwari.K — Assistant Professor
-- Mr. Piriya Dharsan.R — Assistant Professor
-- Mr. Rajasekaran.K — Assistant Professor
-
-==============================================================================
-SECTION 8: DEPARTMENT OF MECHANICAL ENGINEERING
-==============================================================================
-
-HEAD OF DEPARTMENT:
-- Mr. Arunprasad.M — Assistant Professor & Head of Department, Mechanical Engineering
-  Qualification: B.E. (Production), M.E. (Manufacturing), Ph.D (pursuing)
-
-ASSOCIATE PROFESSOR:
-- Mr. Thirumavalavan.R — Associate Professor
-  Qualification: B.E., M.E. (Production), Ph.D (pursuing)
-
-ASSISTANT PROFESSORS:
-- Mr. Vinoth Raj.D — Assistant Professor
-- Mr. Umaseelan.P — Assistant Professor
-- Mr. Manivannan.P — Assistant Professor
-- Mr. Gunasekar.D — Assistant Professor
-- Mr. Keerthivasan.P — Assistant Professor
-
-==============================================================================
-SECTION 9: DEPARTMENT OF ELECTRICAL & ELECTRONICS ENGINEERING (EEE)
-==============================================================================
-
-HEAD OF DEPARTMENT:
-- Mr. Jeevanantham.R — Assistant Professor & Head of Department, EEE
-  Qualification: B.E., M.E., Ph.D (pursuing)
-
-ASSISTANT PROFESSORS:
-- Ms. Hemila Haland.S — Assistant Professor
-- Mrs. Amal Philomiya.L — Assistant Professor
-- Mrs. Nagalakshmi.R — Assistant Professor
-- Mr. Sridhar.V — Assistant Professor
-- Mrs. Lakshmi Lauvanya.K — Assistant Professor
-- Ms. Indhumathi.G — Assistant Professor
-
-==============================================================================
-SECTION 10: DEPARTMENT OF SCIENCE & HUMANITIES
-==============================================================================
-
-CHEMISTRY:
-- Dr. Abbas Ali.A — Professor (Chemistry)
-- Mr. Narayanan.G — Associate Professor (Chemistry)
-- Mr. Marimuthu.T — Assistant Professor (Chemistry)
-
-PHYSICS:
-- Dr. Chandran.P — Professor (Physics)
-- Mr. Vijay Anand.K — Assistant Professor (Physics)
-- Mr. Balasubramaniyan.G — Assistant Professor (Physics)
-
-ENGLISH:
-- Ms. Rexcy.A — Assistant Professor (English)
-- Mr. Nitheesh Krishnan.B — Assistant Professor (English)
-- Mr. Surendhar.P — Assistant Professor (English)
-- Mrs. Priya.C — Assistant Professor (English)
-
-==============================================================================
-SECTION 11: DEPARTMENT OF MBA (MASTER OF BUSINESS ADMINISTRATION)
-==============================================================================
-
-- Dr. A. Saranya Devi — Professor, MBA Department
-- Dr. S. Amudha — Associate Professor, MBA Department
-- Mrs. A. Judith Matharasi Angeline — Assistant Professor, MBA Department
-
-MBA SPECIALIZATIONS:
-- Finance Management
-- Human Resource Management
-- Marketing Management
-- System Management
-
-==============================================================================
-SECTION 12: DEPARTMENT OF M.E. COMPUTER SCIENCE & ENGINEERING (PG)
-==============================================================================
-
-- Mr. M. Sivaraman — Assistant Professor, M.E. CSE Department
-
-==============================================================================
-SECTION 13: INFORMATION TECHNOLOGY (IT) & CYBER SECURITY DEPARTMENTS
-==============================================================================
-
-The B.Tech Information Technology and B.E. CSE (Cyber Security) programs are offered under the CSE umbrella. Faculty for these departments are shared with the CSE and AI & DS departments.
-
-==============================================================================
-QUICK REFERENCE — HEADS OF ALL DEPARTMENTS
-==============================================================================
-
-| Department                              | HOD Name           | Designation              |
-|-----------------------------------------|--------------------|--------------------------|
-| Computer Science & Engineering (CSE)    | Dr. P. Sujatha     | Professor & HoD (Also Vice Principal) |
-| AI & Data Science (AI & DS)             | Dr. John Joseph.S  | Assistant Professor & HoD |
-| Electronics & Communication Engg (ECE) | Dr. Radhika.S      | Professor & HoD          |
-| Civil Engineering                       | Mr. Sundarraj.S    | Assistant Professor & HoD |
-| Mechanical Engineering                  | Mr. Arunprasad.M   | Assistant Professor & HoD |
-| Electrical & Electronics Engg (EEE)    | Mr. Jeevanantham.R | Assistant Professor & HoD |
-| Science & Humanities                    | (Multiple subject HoDs) |                       |
-| MBA                                     | Dr. A. Saranya Devi | Professor               |
+ADMINISTRATIVE OFFICER:
+- Mr. S. Moorthy — Administrative Officer
 
 ==============================================================================
 IMPORTANT AI RULES FOR FACULTY QUERIES
 ==============================================================================
-
 1. The PRINCIPAL of SEC is Dr. M. Arulkumaran. Never confuse any other staff as Principal.
 2. Dr. P. Sujatha is the VICE PRINCIPAL and also HOD of CSE — she is NOT the Principal.
-3. Dr. John Joseph.S (AI & DS HoD) is NOT the vice principal.
-4. If a user asks "who is the HOD of [department]", refer to Section 12 Quick Reference above.
-5. For staff contact details, direct users to: Phone: +91 98434 90901 | Email: info@sudharsanec.edu.in | Website: https://sec.ac.in
+3. For staff contact details, direct users to: Phone: +91 98434 90901 | Email: info@sudharsanec.edu.in | Website: https://sec.ac.in
+
+==============================================================================
+COMPREHENSIVE STAFF & FACULTY DIRECTORY (UPDATED FOR AI QUERIES)
+==============================================================================
+- Staff Name: MR.SUNDARRAJ.S | Designation: ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT | Department: B.E Civil Engineering | Qualification: B.E. CIVIL ENGINEERING, M.E STRUCTURAL ENGINEERING
+
+- Staff Name: MR.SIVA.P | Designation: ASSISTANT PROFESSOR | Department: B.E Civil Engineering | Qualification: B.E. CIVIL ENGINEERING, M.E ENVIRONMENTAL ENGINEERING
+
+- Staff Name: MS.PARKAVI D.C | Designation: ASSISTANT PROFESSOR | Department: B.E Civil Engineering | Qualification: B.E. CIVIL ENGINEERING, M.E STRUCTURAL ENGINEERING, (PH.D) STRUCTURAL ENGINEERING
+
+- Staff Name: Mr.JAYABHARATHI.D | Designation: ASSISTANT PROFESSOR | Department: B.E Civil Engineering | Qualification: B.E. CIVIL ENGINEERING, M.E STRUCTURAL ENGINEERING
+
+- Staff Name: Mrs.SHORNAMBIGAI.M | Designation: ASSISTANT PROFESSOR | Department: B.E Civil Engineering | Qualification: B.E. CIVIL ENGINEERING, M.E ENVIRONMENTAL ENGINEERING, (PH.D) PETROCHEMICAL ENGINEERING
+
+- Staff Name: Dr.SUJATHA.P | Designation: PROFESSOR & HEAD OF THE DEPARTMENT | Department: B.E Computer Science and Engineering | Qualification: B.E. COMPUTER SCIENCE AND ENGINEERING, M.E. COMPUTER SCIENCE AND ENGINEERING, PH.D. COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MRS.PARVATHI.P | Designation: ASSOCIATE PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: M.SC CS AND IT, M.TECH. COMPUTER AND IT
+
+- Staff Name: MRS.AARTHI.M | Designation: ASSISTANT PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: B.TECH INFORMATION TECHNOLOGY, M.E COMPUTER SCIENCE AND ENGINEERING, PH.D. IN INFORMATION AND COMMUNICATION ENGINEERING
+
+- Staff Name: MRS.RAJALAKSHMI.G | Designation: ASSISTANT PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MS.SIVAPRIYANGA.P | Designation: ASSISTANT PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING, PH.D. IN INFORMATION AND COMMUNICATION ENGINEERING
+
+- Staff Name: MS.NANDHINI.N | Designation: ASSISTANT PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MR.AYYAPAKUMARAN.R | Designation: ASSISTANT PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: Mr.ELAMBARIDHI.S | Designation: ASSISTANT PROFESSOR | Department: B.E Computer Science and Engineering | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MR.JEEVANANTHAM.R | Designation: ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT | Department: B.E Electrical and Electronics Engineering | Qualification: B.E ELECTRICAL AND ELECTRONICS ENGINEERING, M.E POWER SYSTEMS ENGINEERING, (PH.D) ELECTRICAL ENGINEERING
+
+- Staff Name: MS.HEMILA HALAND.S | Designation: ASSISTANT PROFESSOR | Department: B.E Electrical and Electronics Engineering | Qualification: B.E ELECTRICAL AND ELECTRONICS ENGINEERING, M.E POWER SYSTEMS ENGINEERING, (PH.D) ELECTRICAL ENGINEERING
+
+- Staff Name: MRS.AMAL PHILOMIYA.L | Designation: ASSISTANT PROFESSOR | Department: B.E Electrical and Electronics Engineering | Qualification: B.E ELECTRICAL AND ELECTRONICS ENGINEERING, M.E POWER ELECTRONICS AND DRIVES
+
+- Staff Name: MRS.NAGALAKSHMI.R | Designation: ASSISTANT PROFESSOR | Department: B.E Electrical and Electronics Engineering | Qualification: B.E ELECTRICAL AND ELECTRONICS ENGINEERING, M.E ELECTRICAL DRIVES AND EMBEDDED CONTROL
+
+- Staff Name: MR.SRIDHAR.V | Designation: ASSISTANT PROFESSOR | Department: B.E Electrical and Electronics Engineering | Qualification: B.E ELECTRICAL AND ELECTRONICS ENGINEERING, M.E POWER ELECTRONICS AND DRIVES
+
+- Staff Name: MRS.LAKSHMI LAUVANYA.K | Designation: ASSISTANT PROFESSOR | Department: B.E Electrical and Electronics Engineering | Qualification: B.E ELECTRICAL AND ELECTRONICS ENGINEERING, M.TECH POWER SYSTEMS
+
+- Staff Name: MS.INDHUMATHI.G | Designation: ASSISTANT PROFESSOR | Department: B.E Electrical and Electronics Engineering | Qualification: B.E. – ELECTRICAL AND ELECTRONICS ENGINEERING, M.E. – POWER ELECTRONICS AND DRIVES
+
+- Staff Name: MR.SARATHBABU.R | Designation: ASSOCIATE PROFESSOR | Department: B.E Electronics and Communication Engineering | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMMUNICATION SYSTEMS, (PH.D) INFORMATION AND COMMUNICATION ENGINEERING
+
+- Staff Name: MR.RAMESH.D | Designation: ASSISTANT PROFESSOR | Department: B.E Electronics and Communication Engineering | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMMUNICATION SYSTEMS, (PH.D) INFORMATION AND COMMUNICATION ENGINEERING
+
+- Staff Name: MRS.JENIFER NIROSHA.A | Designation: ASSISTANT PROFESSOR | Department: B.E Electronics and Communication Engineering | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMMUNICATION SYSTEMS
+
+- Staff Name: MS.JAMUNA RANI.P | Designation: ASSISTANT PROFESSOR | Department: B.E Electronics and Communication Engineering | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMMUNICATION SYSTEMS
+
+- Staff Name: MRS.PRIYA.U | Designation: ASSISTANT PROFESSOR | Department: B.E Electronics and Communication Engineering | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMMUNICATION & NETWORKING
+
+- Staff Name: MRS.KEERTHANA LAKSHMI.M | Designation: ASSISTANT PROFESSOR | Department: B.E Electronics and Communication Engineering | Qualification: B.E. – ELECTRONICS AND COMMUNICATIONS ENGINEERING, M.E. – COMMUNICATION SYSTEMS
+
+- Staff Name: MR.ARUNPRASAD.M | Designation: ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT | Department: B.E Mechanical Engineering | Qualification: B.E PRODUCTION ENGINEERING, M.E MANUFACTURING ENGINEERING, (PH.D) METAL FORMING
+
+- Staff Name: MR.THIRUMAVALAVAN.R | Designation: ASSOCIATE PROFESSOR | Department: B.E Mechanical Engineering | Qualification: B.E. – MECHANICAL ENGINEERING, M.E. – PRODUCTION ENGINEERING, (PH.D) MATERIAL SCIENCE
+
+- Staff Name: MR.VINOTH RAJ.D | Designation: ASSISTANT PROFESSOR | Department: B.E Mechanical Engineering | Qualification: B.E AERONAUTICAL ENGINEERING, M.E THERMAL ENGINEERING, (PH.D) REFRIGERATION SYSTEM
+
+- Staff Name: MR.UMASEELAN.P | Designation: ASSISTANT PROFESSOR | Department: B.E Mechanical Engineering | Qualification: B.E MECHANICAL ENGINEERING, M.E ENGINEERING DESIGN, (PH.D) SOLAR ENERGY
+
+- Staff Name: MR.MANIVANNAN.P | Designation: ASSISTANT PROFESSOR | Department: B.E Mechanical Engineering | Qualification: B.E MECHANICAL ENGINEERING, M.E THERMAL ENGINEERING
+
+- Staff Name: MR.GUNASEKAR.D | Designation: ASSISTANT PROFESSOR | Department: B.E Mechanical Engineering | Qualification: B.E PRODUCTION ENGINEERING, M.E MANUFACTURING ENGINEERING
+
+- Staff Name: MR.KEERTHIVASAN.P | Designation: ASSISTANT PROFESSOR | Department: B.E Mechanical Engineering | Qualification: B.E MECHANICAL ENGINEERING, M.E CAD/CAM, (PH.D) MATERIAL SCIENCE
+
+- Staff Name: MRS.KAVITHA.R | Designation: ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT | Department: B.E CSE(Artificial Intelligence and Machine Learning) | Qualification: B.TECH INFORMATION TECHNOLOGY, M.TECH INFORMATION TECHNOLOGY, PH.D. IN INFORMATION AND COMMUNICATION ENGINEERING
+
+- Staff Name: MS.GANGA LAKSHMI.M | Designation: ASSISTANT PROFESSOR | Department: B.E CSE(Artificial Intelligence and Machine Learning) | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MS.SUHASINI.C | Designation: ASSISTANT PROFESSOR | Department: B.E CSE(Artificial Intelligence and Machine Learning) | Qualification: B.E ELECTRONICS AND COMMUNICATION ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MRS.MARY JANSI RANI.A | Designation: ASSISTANT PROFESSOR | Department: B.E CSE(Artificial Intelligence and Machine Learning) | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: DR.JOHN JOSEPH.S | Designation: ASSISTANT PROFESSOR & HEAD OF THE DEPARTMENT | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.TECH INFORMATION TECHNOLOGY, M.E COMPUTER SCIENCE AND ENGINEERING, PH.D. – COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MRS.PORKODI.T | Designation: ASSISTANT PROFESSOR | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING, (PH.D.) IN INFORMATION AND COMMUNICATION ENGINEERING
+
+- Staff Name: MRS.SELVAKUMARI.N | Designation: ASSISTANT PROFESSOR | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.E COMPUTER SCIENCE AND ENGINEERING, M.E COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MRS.INDU.P | Designation: ASSISTANT PROFESSOR | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.E. – ELECTRONICS AND COMMUNICATIONS ENGINEERING, M.E VLSI Design
+
+- Staff Name: MS.SNEKA.X | Designation: TEACHING ASSISTANT | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.Sc. COMPUTER SCIENCE, M.Sc.DATA SCIENCE
+
+- Staff Name: MS.SOWMIYA.M | Designation: ASSISTANT PROFESSOR | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.E-ELECTRONICS AND COMMUNICATION ENGINEERING, M.E-VLSI DESIGN
+
+- Staff Name: Mr.DHAVAMANI.M | Designation: ASSISTANT PROFESSOR | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.E-COMPUTER SCIENCE AND ENGINEERING, M.E- COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: Mrs.JENI PRIYANGA.I | Designation: TECHNICAL ASSISTANT | Department: B.Tech Artificial Intelligence and Data Science | Qualification: B.E-COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MR. M. SIVARAMAN | Designation: ASSISTANT PROFESSOR | Department: M.E Computer Science and Engineering | Qualification: B.E. – COMPUTER SCIENCE AND ENGINEERING, M.E. – COMPUTER SCIENCE AND ENGINEERING
+
+- Staff Name: MRS. A. JUDITH MATHARASI ANGELINE | Designation: ASSISTANT PROFESSOR | Department: Master of Business Administration | Qualification: B.B.A. – BUSINESS ADMINISTRATION, M.B.A. – BUSINESS ADMINISTRATION
+
+- Staff Name: DR. A. SARANYA DEVI | Designation: PROFESSOR | Department: Master of Business Administration | Qualification: B.SC. – INFORMATION SYSTEMS, M.B.A – BUSINESS ADMINISTRATION, PH.D. – BUSINESS ADMINISTRATION
+
+- Staff Name: DR. S. AMUDHA | Designation: ASSOCIATE PROFESSOR | Department: Master of Business Administration | Qualification: B.COM. – COMMERCE, M.B.A. – BUSINESS ADMINISTRATION, PH.D. – COMMERCE
+
+- Staff Name: DR.ABBAS ALI.A | Designation: PROFESSOR | Department: DEPARTMENT OF CHEMISTRY | Qualification: B.SC CHEMISTRY, M.SC CHEMISTRY, M.PHIL CHEMISTRY, PH.D CHEMISTRY
+
+- Staff Name: MR.NARAYANAN.G | Designation: ASSOCIATE PROFESSOR | Department: DEPARTMENT OF CHEMISTRY | Qualification: B.SC CHEMISTRY, M.SC CHEMISTRY, M.PHIL CHEMISTRY
+
+- Staff Name: MR.MARIMUTHU.T | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF CHEMISTRY | Qualification: B.SC CHEMISTRY, M.SC CHEMISTRY
+
+- Staff Name: DR.CHANDRAN.P | Designation: PROFESSOR | Department: DEPARTMENT OF PHYSICS | Qualification: B.SC PHYSICS, M.SC. PHYSICS, PH.D. PHYSICS
+
+- Staff Name: MR.VIJAY ANAND.K | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF PHYSICS | Qualification: B.SC PHYSICS, M.SC. PHYSICS, M.PHIL PHYSICS
+
+- Staff Name: MR.BALASUBRAMANIYAN.G | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF PHYSICS | Qualification: B.SC PHYSICS, M.SC. PHYSICS, M.PHIL PHYSICS, (PH.D.) PHYSICS
+
+- Staff Name: MRS.BANU.P | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF MATHEMATICS | Qualification: B.SC MATHEMATICS, M.SC. MATHEMATICS, M.PHIL MATHEMATICS
+
+- Staff Name: MR.THIRUMENI.D | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF MATHEMATICS | Qualification: B.SC MATHEMATICS, M.SC.APPLIED MATHEMATICS, M.PHILMATHEMATICS
+
+- Staff Name: Mrs.UMA MAHESHWARI.N | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF MATHEMATICS | Qualification: M.Sc. MATHEMATICS, M.Phil.-MATHEMATICS, B.Ed.-MATHEMATICAL SCIENCE
+
+- Staff Name: Dr.MUBINA NANCY | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF MATHEMATICS | Qualification: M.Sc. MATHEMATICS, Ph.D.-MATHEMATICS
+
+- Staff Name: Mrs.MUTHUSELVI.K | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF MATHEMATICS | Qualification: B.SC MATHEMATICS, M.Sc. MATHEMATICS, B.Ed-MATHEMATICAL SCIENCE, M.Phil.-MATHEMATICS
+
+- Staff Name: MS. REXCY.A | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF ENGLISH | Qualification: B.A ENGLISH, M.A ENGLISH, M.PHIL ENGLISH
+
+- Staff Name: Mr.NITHEESH KRISHNAN.B | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF ENGLISH | Qualification: M.A-ENGLISH, M.PHIL-ENGLISH, PGDCA,, (Ph.D.)-ENGLISH
+
+- Staff Name: Mr.SURENDHAR.P | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF ENGLISH | Qualification: M.A-ENGLISH, M.Ed.-ENGLISH, M.PHIL-ENGLISH, NET-ENGLISH
+
+- Staff Name: MRS.PRIYA.C | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF ENGLISH | Qualification: B.A. – ENGLISH, M.A. – ENGLISH, NET
+
+- Staff Name: DR.JANAGAR.M | Designation: PROFESSOR | Department: DEPARTMENT OF TAMIL | Qualification: B.LIT TAMIL, M.A TAMIL, PH.D TAMIL
+
+- Staff Name: MRS.SHARMILA.A | Designation: ASSISTANT PROFESSOR | Department: DEPARTMENT OF TAMIL | Qualification: B.A TAMIL, M.A TAMIL
+
+- Staff Name: DR.PADMAVATHI.M | Designation: PROFESSOR | Department: DEPARTMENT OF TAMIL | Qualification: B.A. – TAMIL, M.A. – TAMIL, M.Phil.-TAMIL, PH.D. - TAMIL
+

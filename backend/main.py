@@ -1,6 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
-from utils import knowledge, get_all_knowledge, DATA_DIR, save_chat_to_json
+from utils import knowledge, get_all_knowledge, DATA_DIR
 import os
 from dotenv import load_dotenv
 from groq import Groq
@@ -211,6 +211,16 @@ async def login(req: LoginRequest):
     return {"status": "error", "message": "Invalid email or password"}
 
 
+@app.get("/debug-knowledge")
+async def debug_knowledge():
+    return {
+        "keys": list(knowledge.keys()),
+        "faculty_loaded": "faculty" in knowledge,
+        "faculty_len": len(knowledge.get("faculty", "")) if "faculty" in knowledge else 0,
+        "is_staff_test": "hod" in "who is the hod",
+        "data_dir": DATA_DIR
+    }
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(
     question: str = Form(...),
@@ -247,23 +257,135 @@ async def chat(
                 attachment_content = f"\n[Attached file {filename} could not be read as text]"
         else:
             attachment_content = f"\n[Attached file: {filename} (Binary/Unsupported for direct text extraction)]"
-
+  
     # ─── Step 1: FAISS Similarity Search (RAG) ──────────────────────────────
-    focused_context = brain.search(user_question, top_k=3)
+    focused_context = brain.search(user_question, top_k=15)
     
-    # Still include website context by default if needed, or let brain handle it.
-    # User's FAISS should already include it.
+    # ─── Step 2: 100% Faculty Query Accuracy (Full Injection for Staff Questions) ─
+    query_lower = user_question.lower()
+    staff_keywords = [
+        "staff", "faculty", "professor", "hod", "head of", "who is", "who are",
+        "principal", "dr.", "mr.", "mrs.", "ms.", "teaches", "department",
+        "list", "show", "civil", "cse", "eee", "ece", "mechanical", "ai & ml",
+        "aiml", "data science", "ai & ds", "aids", "mba", "chemistry", "physics",
+        "mathematics", "english", "tamil", "qualification", "designation", "associate",
+        "assistant", "technical", "teaching", "count", "how many"
+    ]
+    is_staff_query = any(k in query_lower for k in staff_keywords)
+    
+    # Detect if it's a LIST / TABLE request (needs smarter model)
+    table_keywords = ["list", "show", "all faculty", "all staff", "department staff", "department faculty"]
+    is_table_query = any(k in query_lower for k in table_keywords)
+    
+    print(f"DEBUG: User asked '{user_question}'")
+    print(f"DEBUG: is_staff_query={is_staff_query}, is_table_query={is_table_query}")
+
+    if is_staff_query and "faculty" in knowledge:
+        faculty_text = knowledge["faculty"]
+        lines = [line.strip() for line in faculty_text.split("\n") if line.strip().startswith("- Staff Name:")]
+        
+        # Determine target department keywords
+        requested_depts = []
+        dept_map = {
+            "civil": ["civil"],
+            "cse": ["computer science and engineering (cse)", "m.e computer science"],
+            "eee": ["electrical and electronics engineering"],
+            "ece": ["electronics and communication engineering"],
+            "mech": ["mechanical engineering"],
+            "ai & ml": ["artificial intelligence and machine learning (ai & ml)"],
+            "aiml": ["artificial intelligence and machine learning (ai & ml)"],
+            "ai & ds": ["artificial intelligence and data science (ai & ds)"],
+            "aids": ["artificial intelligence and data science (ai & ds)"],
+            "mba": ["master of business administration"],
+            "chemistry": ["chemistry"],
+            "physics": ["physics"],
+            "math": ["mathematics"],
+            "english": ["english"],
+            "tamil": ["tamil"]
+        }
+        
+        for key, aliases in dept_map.items():
+            if key in query_lower:
+                requested_depts.extend(aliases)
+        
+        # Deduplicate targets
+        requested_depts = list(set(requested_depts))
+        
+        relevant_staff = []
+        if requested_depts:
+            print(f"DEBUG: Targeted query for {requested_depts}")
+            for line in lines:
+                # Rule: Check if line's 'Department:' field specifically matches any of our requested departments
+                parts = line.split("|")
+                dept_field = ""
+                for p in parts:
+                    if "Department:" in p:
+                        dept_field = p.replace("Department:", "").strip().lower()
+                        break
+                
+                # If the line's department field exactly matches one of our target strings
+                if any(target in dept_field for target in requested_depts):
+                    relevant_staff.append(line)
+        else:
+            # Fallback for generic 'list staff' or 'who is Dr. X' queries: inject all
+            print("DEBUG: Generic staff query, injecting full directory for discovery.")
+            relevant_staff = lines
+
+        if relevant_staff:
+            count = len(relevant_staff)
+            print(f"DEBUG: Injecting {count} relevant staff members into context.")
+            staff_context = "\n".join(relevant_staff)
+            
+            # CRITICAL: For targeted department queries, we CLEAR the FAISS context
+            # to prevent 'noisy' matches (like AI & ML staff who have 'Computer Science' in their qualifications)
+            # from confusing the AI.
+            if requested_depts:
+                print("DEBUG: Clearing FAISS context to ensure ZERO overlap for targeted dept query.")
+                focused_context = ""
+                
+            focused_context = f"--- VERIFIED STAFF LIST FOR {', '.join(requested_depts).upper() if requested_depts else 'COLLEGE'} ---\n{staff_context}\n\n" + (f"--- ADDITIONAL SEARCH RESULTS ---\n{focused_context}" if focused_context else "")
+
+    # 📁 Save context for debugging
+    with open("last_context_debug.txt", "w", encoding="utf-8") as f:
+        f.write(focused_context)
 
 
     # ─── Step 3: Strict Grounded LLM Call  ────────────────────────────────────
-    strict_system_prompt = f"""You are "Zentrix", the official AI assistant for Sudharsan Engineering College (SEC).
+    strict_system_prompt = f"""You are "Zentrix", the official AI assistant for Sudharsan Engineering College (SEC), Sathiyamangalam, Pudukkottai.
 
 CRITICAL RULES FOR 100% ACCURACY:
-1. ONLY answer questions about Sudharsan Engineering College (SEC) using the EXACT CONTEXT provided below. 
-2. BE EXTREMELY BRIEF: Answer in maximum 2-3 lines. Be direct and relevant.
-3. If the answer is NOT in the CONTEXT below, YOU MUST REPLY: "I currently do not have verified information regarding them."
-4. NEVER assume, guess, or make up names, roles, or phone numbers. If it isn't explicitly in the CONTEXT, you do not know it.
-5. If details are missing, refer them to +91 98434 90901 or info@sudharsanec.edu.in.
+1. ONLY answer using the EXACT CONTEXT provided below. Do NOT hallucinate or assume any information.
+2. CSE, AI & ML, and AI & DS are THREE COMPLETELY SEPARATE departments. If the context segment is labeled 'VERIFIED STAFF LIST FOR CSE', then DO NOT include any person whose record does not appear in that exact section. 
+3. NEVER make up names, qualifications, designations, or phone numbers.
+4. If the answer is NOT found in the CONTEXT, reply ONLY: "I currently do not have verified information regarding this."
+5. If info is missing, refer to: +91 98434 90901 | info@sudharsanec.edu.in
+
+FORMATTING RULES (MANDATORY):
+- When asked to LIST or SHOW staff/faculty for a department → always return a NUMBERED MARKDOWN TABLE with exactly these columns: S.No | Name | Designation.
+- You MUST include the header separator line (e.g., |---|---|---|) so it renders correctly as a table.
+- When asked WHO IS a person → reply in 1-2 professional sentences: their full name, designation, and department.
+- When asked for QUALIFICATION → list their qualifications clearly in a professional sentence.
+- When asked to list HODs → return a clean table: Department | HOD Name
+- When asked for FACULTY COUNT → state the count and then list the names in a numbered list.
+- Always use FULL PROPER NAMES with prefixes (Mr., Mrs., Ms., Dr.) exactly as given in the context.
+- Format names in TITLE CASE (e.g., "Mr. Sundarraj S", not "MR. SUNDARRAJ S").
+
+EXAMPLE RESPONSE FORMATS:
+
+Q: Who is the HOD of Civil Engineering?
+A: Mr. Sundarraj S is the Head of the Department (HOD) of B.E Civil Engineering at Sudharsan Engineering College. He holds a B.E. in Civil Engineering and an M.E. in Structural Engineering.
+
+Q: List all faculty in CSE
+A:
+| S.No | Name | Designation |
+|---|---|---|
+| 1 | Dr. Sujatha P | Professor & HOD |
+| 2 | Mrs. Parvathi P | Associate Professor |
+| 3 | Mrs. Aarthi M | Assistant Professor |
+...
+
+Q: What is the qualification of Parkavi D C?
+A: Ms. Parkavi D C holds a B.E. in Civil Engineering, an M.E. in Structural Engineering, and is pursuing a Ph.D. in Structural Engineering.
 
 CONTEXT:
 {focused_context}
@@ -271,25 +393,58 @@ CONTEXT:
 """
 
     try:
-        # Multi-modal payload
-        messages = [{"role": "system", "content": strict_system_prompt}]
-        
         user_content = [{"type": "text", "text": user_question}]
         if is_image:
             user_content.append({
                 "type": "image_url",
                 "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}
             })
+
+        messages = [
+            {"role": "system", "content": strict_system_prompt},
+            {"role": "user", "content": user_content}
+        ]
         
-        messages.append({"role": "user", "content": user_content})
+        # Add a hidden instruction at the end to force formatting
+        if is_staff_query:
+            messages.append({"role": "system", "content": "MANDATORY: Follow the formatting rules exactly. If it's a list, use a MARKDOWN TABLE with |---|---|---| separators. Start your answer with 'ZENTRIX-V2: '"})
+        else:
+            messages.append({"role": "system", "content": "Start your answer with 'ZENTRIX-V2: '"})
 
         client = get_groq_client()
-        response = client.chat.completions.create(
-            messages=messages,
-            model="llama-3.2-11b-vision-preview" if is_image else "llama3-70b-8192",
-            max_tokens=256,
-            temperature=0.1,
-        )
+        # Smart model routing:
+        # - Images: vision model
+        # - List/table requests: 70B model for perfect table formatting
+        # - Who-is / qualification / count: fast 8B (avoids timeout, still has full context)
+        if is_image:
+            selected_model = "llama-3.2-11b-vision-preview"
+        elif is_table_query:
+            selected_model = "llama-3.3-70b-versatile"   # Best for formatted tables
+        else:
+            selected_model = "llama-3.1-8b-instant"       # Fast for who-is / qual queries
+
+        try:
+            response = client.chat.completions.create(
+                messages=messages,
+                model=selected_model,
+                max_tokens=1024,
+                temperature=0.1,
+                timeout=40,
+            )
+        except Exception as e:
+            # Fallback to 8B if 70B fails or hits rate limit
+            if selected_model == "llama-3.3-70b-versatile":
+                print(f"70B Model failed ({e}), falling back to 8B model...")
+                response = client.chat.completions.create(
+                    messages=messages,
+                    model="llama-3.1-8b-instant",
+                    max_tokens=1024,
+                    temperature=0.1,
+                    timeout=20,
+                )
+            else:
+                raise e
+
         ai_response = response.choices[0].message.content.strip()
         
         # 💾 Update History
@@ -310,8 +465,10 @@ CONTEXT:
         )
 
     except Exception as e:
+        import traceback
         print(f"⚠️ Groq Error: {e}")
-        fallback_msg = "I encountered an error analyzing your request. Please try again or contact SEC Admissions."
+        traceback.print_exc()
+        fallback_msg = f"I encountered an error analyzing your request. Error: {str(e)[:100]}"
         return ChatResponse(response=fallback_msg, source="error_fallback", timestamp=timestamp)
 
 

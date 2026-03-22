@@ -8,6 +8,17 @@ __pycache__/
 node_modules/
 dist/
 .DS_Store
+.env.local
+*.log
+error_log.txt
+api_response.txt
+live_test_results.txt
+target_test_results.txt
+test_query_out.txt
+netstat_out.txt
+last_context_debug.txt
+*.apk
+.firebase/
 
 # Git
 .git/

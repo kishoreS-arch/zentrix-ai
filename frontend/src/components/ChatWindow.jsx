@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ZENTRIX_LOGO = (
   <div className="w-7 h-7 rounded-full bg-[#00e5ff] flex items-center justify-center text-[9px] font-black text-white shrink-0 mt-1">
@@ -67,8 +68,32 @@ const ChatWindow = ({ messages, loading }) => {
                     prose-p:my-1 prose-p:leading-relaxed
                     prose-li:my-0.5 prose-ul:my-1 prose-ol:my-1
                     prose-strong:text-white prose-strong:font-semibold
-                    prose-headings:text-white prose-headings:font-semibold prose-headings:my-2">
-                    <ReactMarkdown>{msg.content || msg.text}</ReactMarkdown>
+                    prose-headings:text-white prose-headings:font-semibold prose-headings:my-2
+                    prose-table:w-full prose-table:text-sm
+                    prose-th:text-[#00e5ff] prose-th:font-bold prose-th:px-3 prose-th:py-2 prose-th:bg-[#0a0a0a] prose-th:border prose-th:border-[#2a2a2a]
+                    prose-td:px-3 prose-td:py-2 prose-td:border prose-td:border-[#2a2a2a] prose-td:text-white">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        table: ({ node, ...props }) => (
+                          <div className="overflow-x-auto my-3 rounded-xl border border-[#2a2a2a]">
+                            <table className="w-full border-collapse text-sm" {...props} />
+                          </div>
+                        ),
+                        thead: ({ node, ...props }) => (
+                          <thead className="bg-[#111]" {...props} />
+                        ),
+                        th: ({ node, ...props }) => (
+                          <th className="px-4 py-2 text-left text-[#00e5ff] font-bold border-b border-[#2a2a2a] whitespace-nowrap" {...props} />
+                        ),
+                        tr: ({ node, ...props }) => (
+                          <tr className="border-b border-[#1e1e1e] even:bg-[#151515] hover:bg-[#1a1a1a] transition-colors" {...props} />
+                        ),
+                        td: ({ node, ...props }) => (
+                          <td className="px-4 py-2 text-white whitespace-nowrap" {...props} />
+                        ),
+                      }}
+                    >{msg.content || msg.text}</ReactMarkdown>
                   </div>
                 ) : (
                   <p>{msg.content || msg.text}</p>

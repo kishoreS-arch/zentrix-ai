@@ -1,0 +1,41 @@
+Q: Who is the HOD of Civil Engineering?
+
+A: TIMEOUT/ERROR: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=35)
+
+============================================================
+
+Q: Show EEE department staff
+
+A: Here is the list of EEE department staff:
+ 
+1 | Mr. Jeevanantham.R | Assistant Professor & Head of the Department
+2 | Ms. Hemila Haland.S | Assistant Professor
+3 | Mrs. Amal Philomiya.L | Assistant Professor
+4 | Mrs. Nagalakshmi.R | Assistant Professor
+5 | Mr. Sridhar.V | Assistant Professor
+6 | Mrs. Lakshmi Lauvanya.K | Assistant Professor
+7 | Ms. Indhumathi.G | Assistant Professor
+
+============================================================
+
+Q: How many faculty are there in CSE department?
+
+A: TIMEOUT/ERROR: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=35)
+
+============================================================
+
+Q: List MBA department staff
+
+A: Here is the list of MBA department staff:
+1. Dr. A. Saranya Devi - Professor
+2. Dr. S. Amudha - Associate Professor
+3. Mrs. A. Judith Matharasi Angeline - Assistant Professor
+
+============================================================
+
+Q: Who is DR. SARANYA DEVI?
+
+A: Dr. A. Saranya Devi is a Professor in the Department of Master of Business Administration at Sudharsan Engineering College. She holds a B.Sc. in Information Systems, an M.B.A. in Business Administration, and a Ph.D. in Business Administration.
+
+============================================================
+

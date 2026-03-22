@@ -35,7 +35,9 @@ const isMobileOrPWA = () => {
   return isMobile || isStandalone;
 };
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"; 
+// Always use the Render backend in production; fall back to localhost only when running locally
+const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = import.meta.env.VITE_API_URL || (IS_LOCAL ? "http://localhost:8000" : "https://zentrix-backend-onve.onrender.com");
 
 const App = () => {
   const [messages, setMessages] = useState([]);

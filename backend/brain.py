@@ -1,113 +1,153 @@
-import os
-import faiss
-import numpy as np
-from sentence_transformers import SentenceTransformer
-from typing import List
+"""
+Lightweight Knowledge Engine using TF-IDF + BM25-style search.
+Replaces sentence-transformers + FAISS to stay within Render free tier memory limits (512MB).
+No model downloads required — pure Python, fast startup.
+"""
 
-# Initialize the encoder model (fast + efficient)
-encoder = SentenceTransformer('all-MiniLM-L6-v2')
+import os
+import math
+import re
+from typing import List, Dict
+from collections import defaultdict
+
+
+def tokenize(text: str) -> List[str]:
+    """Simple tokenizer: lowercase, remove punctuation, split on whitespace."""
+    text = text.lower()
+    text = re.sub(r'[^\w\s]', ' ', text)
+    return [w for w in text.split() if len(w) > 1]
+
 
 class KnowledgeEngine:
     def __init__(self, data_dir: str):
         self.data_dir = data_dir
         self.chunks: List[str] = []
-        self.index = None
+        self._index: Dict[str, List[int]] = defaultdict(list)   # term -> [chunk_ids]
+        self._tf: List[Dict[str, float]] = []                    # TF per chunk
+        self._idf: Dict[str, float] = {}                         # IDF per term
         self.load_and_index()
 
+    # ── Data Loading ────────────────────────────────────────────────────────
     def load_and_index(self):
-        """Loads all .txt files from the data directory and creates FAISS index."""
+        """Load all .txt files from data_dir and build TF-IDF index."""
         if not os.path.exists(self.data_dir):
-            print(f"⚠️ Error: Data directory {self.data_dir} not found.")
+            print(f"⚠️  Data directory not found: {self.data_dir}")
             return
 
         total_files = 0
         for filename in sorted(os.listdir(self.data_dir)):
-            if filename.endswith(".txt"):
-                filepath = os.path.join(self.data_dir, filename)
-                try:
-                    with open(filepath, "r", encoding="utf-8") as f:
-                        content = f.read().strip()
-                        if not content:
-                            continue
-                            
-                        # Split by double newline for basic segments
-                        segments = [s.strip() for s in content.split("\n\n") if len(s.strip()) > 10]
-                        
-                        # Apply sliding window for overlapping chunks (ensures context preservation)
-                        # We want chunks of ~500 chars with ~200 chars overlap
-                        for seg in segments:
-                            if len(seg) < 700:
-                                self.chunks.append(seg)
-                            else:
-                                # Break large segments into overlapping chunks
-                                words = seg.split()
-                                chunk_size = 100 # words
-                                overlap = 30 # words
-                                for i in range(0, len(words), chunk_size - overlap):
-                                    chunk = " ".join(words[i:i + chunk_size])
-                                    if len(chunk) > 20:
-                                        self.chunks.append(chunk)
-                                        
-                        total_files += 1
-                except Exception as e:
-                    print(f"⚠️ Error loading {filename}: {e}")
+            if not filename.endswith(".txt"):
+                continue
+            filepath = os.path.join(self.data_dir, filename)
+            try:
+                with open(filepath, "r", encoding="utf-8") as f:
+                    content = f.read().strip()
+                if not content:
+                    continue
+
+                # Split into segments on blank lines
+                segments = [s.strip() for s in content.split("\n\n") if len(s.strip()) > 10]
+
+                for seg in segments:
+                    if len(seg) < 700:
+                        self.chunks.append(seg)
+                    else:
+                        # Sliding window for large segments
+                        words = seg.split()
+                        chunk_size, overlap = 100, 30
+                        for i in range(0, len(words), chunk_size - overlap):
+                            chunk = " ".join(words[i: i + chunk_size])
+                            if len(chunk) > 20:
+                                self.chunks.append(chunk)
+
+                total_files += 1
+            except Exception as e:
+                print(f"⚠️  Error loading {filename}: {e}")
 
         print(f"📚 Loaded {total_files} knowledge files, {len(self.chunks)} total chunks.")
 
         if not self.chunks:
-            print("⚠️ No knowledge chunks found!")
+            print("⚠️  No knowledge chunks found!")
             return
 
-        # Encode all chunks
-        embeddings = encoder.encode(self.chunks, show_progress_bar=False)
+        self._build_index()
 
-        # Normalize for cosine similarity
-        faiss.normalize_L2(embeddings)
-        embeddings = np.array(embeddings).astype('float32')
+    # ── Index Building ───────────────────────────────────────────────────────
+    def _build_index(self):
+        """Build TF and IDF tables for BM25-style retrieval."""
+        N = len(self.chunks)
+        doc_freq: Dict[str, int] = defaultdict(int)
 
-        dimension = embeddings.shape[1]
-        # IndexFlatIP with normalized vectors = Cosine Similarity
-        self.index = faiss.IndexFlatIP(dimension)
-        self.index.add(embeddings)
-        print(f"✅ FAISS index built with {len(self.chunks)} chunks (dim={dimension}).")
+        for cid, chunk in enumerate(self.chunks):
+            tokens = tokenize(chunk)
+            freq: Dict[str, int] = defaultdict(int)
+            for t in tokens:
+                freq[t] += 1
+            total = max(len(tokens), 1)
+            tf = {t: c / total for t, c in freq.items()}
+            self._tf.append(tf)
+            for t in freq:
+                doc_freq[t] += 1
+                self._index[t].append(cid)
 
-    def search(self, query: str, top_k: int = 8, threshold: float = 0.25) -> str:
+        # IDF with smoothing
+        self._idf = {
+            t: math.log((N + 1) / (df + 1)) + 1
+            for t, df in doc_freq.items()
+        }
+        print(f"✅ TF-IDF index built: {len(self.chunks)} chunks, {len(self._idf)} unique terms.")
+
+    # ── Search ───────────────────────────────────────────────────────────────
+    def search(self, query: str, top_k: int = 15, threshold: float = 0.0) -> str:
         """
-        Search FAISS index using Cosine Similarity.
-        - top_k: increased to 8 for better coverage
-        - threshold: lowered to 0.25 to catch more relevant matches
+        BM25-style TF-IDF search.
+        Returns top_k most relevant chunks joined by double newline.
         """
-        if not self.index or not self.chunks:
+        if not self.chunks:
             return ""
 
-        query_embedding = encoder.encode([query])
-        faiss.normalize_L2(query_embedding)
-        query_embedding = query_embedding.astype('float32')
+        query_tokens = tokenize(query)
+        if not query_tokens:
+            return ""
 
-        similarities, indices = self.index.search(query_embedding, top_k)
+        scores: Dict[int, float] = defaultdict(float)
 
-        results = []
-        for i, idx in enumerate(indices[0]):
-            score = float(similarities[0][i])
-            if idx != -1 and score >= threshold:
-                results.append(self.chunks[idx])
+        for token in query_tokens:
+            idf = self._idf.get(token, 0.0)
+            if idf == 0.0:
+                continue
+            for cid in self._index.get(token, []):
+                tf = self._tf[cid].get(token, 0.0)
+                scores[cid] += tf * idf
 
-        # Deduplicate and sort by relevance
+        if not scores:
+            return ""
+
+        # Sort by score descending
+        ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+
+        # Deduplicate by first 50 chars
         seen = set()
-        unique_results = []
-        for r in results:
-            # use hash of first part to avoid near-duplicates
-            key = r[:50].lower().strip()
+        results = []
+        for cid, score in ranked[:top_k * 2]:
+            if score < threshold:
+                continue
+            key = self.chunks[cid][:50].lower().strip()
             if key not in seen:
                 seen.add(key)
-                unique_results.append(r)
+                results.append(self.chunks[cid])
+            if len(results) >= top_k:
+                break
 
-        return "\n\n".join(unique_results)
+        return "\n\n".join(results)
 
+    # ── Reload ───────────────────────────────────────────────────────────────
     def reload(self):
         """Reload all knowledge files and rebuild the index."""
         self.chunks = []
-        self.index = None
+        self._index = defaultdict(list)
+        self._tf = []
+        self._idf = {}
         self.load_and_index()
 
 

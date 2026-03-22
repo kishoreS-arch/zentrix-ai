@@ -5,7 +5,4 @@ python-dotenv
 groq
 requests
 python-multipart
-faiss-cpu
-sentence-transformers
-numpy
 gunicorn
